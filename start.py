@@ -9,6 +9,8 @@ from fastapi.staticfiles import StaticFiles
 
 from components.container.container import horizontal_divider
 from components.progress_bar.progress_bar import vertical_divider
+from components.text.text import txt_header_main, txt_header_tools, txt_header_info, \
+    txt_header_autotests, txt_header_stands
 from fastapi_client.apis import api
 
 from router import Router
@@ -43,38 +45,23 @@ async def main(page: ft.Page):
         await page.go_async('/stands')
 
     bttn_create = ft.TextButton(
-        content=ft.Text(value="Главная",
-                        style=header_text_style,
-                        color=ft.colors.WHITE,
-                        size=22),
+        content=txt_header_main,
         on_click=go_start)
 
     bttn_helper = ft.TextButton(
-        content=ft.Text(value="Инструменты",
-                        style=header_text_style,
-                        color=ft.colors.WHITE,
-                        size=22),
+        content=txt_header_tools,
         on_click=go_tools)
 
     bttn_info = ft.TextButton(
-        content=ft.Text(value="Информация",
-                        style=header_text_style,
-                        color=ft.colors.WHITE,
-                        size=22),
+        content=txt_header_info,
         on_click=go_info)
 
     bttn_autotests = ft.TextButton(
-        content=ft.Text(value="Автотесты",
-                        style=header_text_style,
-                        color=ft.colors.WHITE,
-                        size=22),
+        content=txt_header_autotests,
         on_click=go_autotests)
 
     bttn_stands = ft.TextButton(
-        content=ft.Text(value="Стенды",
-                        style=header_text_style,
-                        color=ft.colors.WHITE,
-                        size=22),
+        content=txt_header_stands,
         on_click=go_stands)
 
     page.appbar = ft.AppBar(

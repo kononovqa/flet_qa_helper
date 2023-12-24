@@ -1,6 +1,7 @@
 import copy
 import flet as ft
 
+from components.text.styles import header_text_style
 from components.text_span.text_span import example_textspan
 
 # main text
@@ -8,6 +9,23 @@ txt_main_text = ft.Text(value='',
                         font_family='Arial',
                         size=20,
                         color=ft.colors.WHITE)
+
+txt_header_text = ft.Text(value="",
+                          style=header_text_style,
+                          color=ft.colors.WHITE,
+                          size=22)
+
+# header text
+txt_header_main = copy.deepcopy(txt_header_text)
+txt_header_main.value = 'Главная'
+txt_header_tools = copy.deepcopy(txt_header_text)
+txt_header_tools.value = 'Инструменты'
+txt_header_info = copy.deepcopy(txt_header_text)
+txt_header_info.value = 'Информация'
+txt_header_autotests = copy.deepcopy(txt_header_text)
+txt_header_autotests.value = 'Автотесты'
+txt_header_stands = copy.deepcopy(txt_header_text)
+txt_header_stands.value = 'Стенды'
 
 txt_main_text_sell = copy.deepcopy(txt_main_text)
 txt_main_text_sell.value = 'Создайте продажу'
@@ -106,35 +124,35 @@ stands_8.value = "STAND 8"
 
 # info page
 container_app_version = ft.Text(
-            value='Версия приложения: 1.0.0 \n',
-            font_family='Arial',
-            size=20,
-            color=ft.colors.WHITE)
+    value='Версия приложения: 1.0.0 \n',
+    font_family='Arial',
+    size=20,
+    color=ft.colors.WHITE)
 
 txt_tg = ft.Text(
-            value='@KononovQA',
-            font_family='Arial',
-            size=20,
-            color=ft.colors.WHITE)
+    value='@KononovQA',
+    font_family='Arial',
+    size=20,
+    color=ft.colors.WHITE)
 
 txt_yt = ft.Text(
-            value='@KononovQA',
-            font_family='Arial',
-            size=20,
-            color=ft.colors.WHITE)
+    value='@KononovQA',
+    font_family='Arial',
+    size=20,
+    color=ft.colors.WHITE)
 
 # autotests page
 name_service = ft.Text(
-        value='name_service',
-        font_family='Arial',
-        size=20,
-        color=ft.colors.WHITE,
-        offset=(0, -0.8))
+    value='name_service',
+    font_family='Arial',
+    size=20,
+    color=ft.colors.WHITE,
+    offset=(0, -0.8))
 
 example_horizontal_text = ft.Text(
-        spans=[example_textspan],
-        size=16,
-        color=ft.colors.WHITE,
-        rotate=ft.Rotate(angle=-1.57),
-        offset=ft.Offset(0.025, 2.9)
-    )
+    spans=[example_textspan],
+    size=16,
+    color=ft.colors.WHITE,
+    rotate=ft.Rotate(angle=-1.57),
+    offset=ft.Offset(0.025, 2.9)
+)

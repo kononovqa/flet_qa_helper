@@ -16,9 +16,10 @@ def info_page(page):
     icon_yt.on_click = press_yt
 
     content = ft.Column([
-        ft.Row([container_app_version], offset=(0.118, 0.3)),
-        ft.Row([icon_tg, txt_tg], offset=(0.118, 0)),
-        ft.Row([icon_yt, txt_yt], offset=(0.118, 0))
+        ft.Row([container_app_version], offset=(0, 0.3),
+               alignment=ft.MainAxisAlignment.CENTER),
+        ft.Row([icon_tg, txt_tg], alignment=ft.MainAxisAlignment.CENTER),
+        ft.Row([icon_yt, txt_yt], alignment=ft.MainAxisAlignment.CENTER)
     ])
 
     return content
