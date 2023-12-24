@@ -17,9 +17,9 @@ def info_page(page):
 
     content = ft.Column([
         ft.Row([container_app_version], offset=(0, 0.3),
-               alignment=ft.MainAxisAlignment.CENTER),
-        ft.Row([icon_tg, txt_tg], alignment=ft.MainAxisAlignment.CENTER),
-        ft.Row([icon_yt, txt_yt], alignment=ft.MainAxisAlignment.CENTER)
-    ])
+               alignment=ft.MainAxisAlignment.START),
+        ft.Row([icon_tg, txt_tg], alignment=ft.MainAxisAlignment.START),
+        ft.Row([icon_yt, txt_yt], alignment=ft.MainAxisAlignment.START)
+    ], width=1309, alignment=ft.MainAxisAlignment.CENTER)
 
     return content
