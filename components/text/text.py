@@ -127,8 +127,7 @@ container_app_version = ft.Text(
     value='Версия приложения: 1.0.0 \n',
     font_family='Arial',
     size=20,
-    color=ft.colors.WHITE,
-    text_align=ft.TextAlign.START)
+    color=ft.colors.WHITE)
 
 txt_tg = ft.Text(
     value='@KononovQA',
