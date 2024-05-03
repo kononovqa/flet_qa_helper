@@ -1,13 +1,13 @@
-import copy
 import flet as ft
 
 
-dropdown = ft.Dropdown(
-    width=700,
-    label='Пользователь',
-    hint_text="Случайный",
-    options=[])
+class Dropdowns:
+    def __init__(self):
+        self.dropdown = ft.Dropdown(
+            width=700,
+            label='Пользователь',
+            hint_text="Случайный",
+            options=[])
 
-
-dropdown_users_order = copy.deepcopy(dropdown)
-dropdown_users_sell = copy.deepcopy(dropdown)
+    def dropdown_users(self):
+        return self.dropdown

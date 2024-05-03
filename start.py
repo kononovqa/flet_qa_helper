@@ -4,17 +4,15 @@ import uvicorn
 import flet_fastapi
 import flet as ft
 
+from router import Router
+
 from fastapi.openapi.utils import get_openapi
 from fastapi.staticfiles import StaticFiles
-
-from components.container.container import horizontal_divider
-from components.progress_bar.progress_bar import vertical_divider
-from components.text.text import txt_header_main, txt_header_tools, txt_header_info, \
-    txt_header_autotests, txt_header_stands
 from fastapi_client.apis import api
 
-from router import Router
-from components.text.styles import header_text_style
+from components.container.container import Containers
+from components.progress_bar.progress_bar import ProgressBars
+from components.text.text import Texts
 
 
 async def main(page: ft.Page):
@@ -44,36 +42,37 @@ async def main(page: ft.Page):
     async def go_stands(e):
         await page.go_async('/stands')
 
-    bttn_create = ft.TextButton(
-        content=txt_header_main,
+    button_create = ft.TextButton(
+        content=Texts().txt_header_main(),
         on_click=go_start)
 
-    bttn_helper = ft.TextButton(
-        content=txt_header_tools,
+    button_helper = ft.TextButton(
+        content=Texts().txt_header_tools(),
         on_click=go_tools)
 
-    bttn_info = ft.TextButton(
-        content=txt_header_info,
+    button_info = ft.TextButton(
+        content=Texts().txt_header_info(),
         on_click=go_info)
 
-    bttn_autotests = ft.TextButton(
-        content=txt_header_autotests,
+    button_autotests = ft.TextButton(
+        content=Texts().txt_header_autotests(),
         on_click=go_autotests)
 
-    bttn_stands = ft.TextButton(
-        content=txt_header_stands,
+    button_stands = ft.TextButton(
+        content=Texts().txt_header_stands(),
         on_click=go_stands)
 
     page.appbar = ft.AppBar(
         title=ft.Column([
             ft.Row(
-                [bttn_create, vertical_divider, bttn_helper, vertical_divider,
-                 bttn_autotests, vertical_divider, bttn_stands, vertical_divider,
-                 bttn_info],
+                [button_create, ProgressBars().vertical_divider, button_helper,
+                 ProgressBars().vertical_divider, button_autotests,
+                 ProgressBars().vertical_divider, button_stands,
+                 ProgressBars().vertical_divider, button_info],
                 alignment=ft.MainAxisAlignment.CENTER,
                 offset=(0, 0.4)),
             ft.Row(
-                [horizontal_divider],
+                [Containers().horizontal_divider],
                 height=16,
                 alignment=ft.MainAxisAlignment.CENTER,
                 vertical_alignment=ft.alignment.bottom_center,

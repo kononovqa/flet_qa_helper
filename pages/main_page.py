@@ -2,42 +2,94 @@ import random
 import traceback
 import flet as ft
 
-from components.alert_dialog.alert_dialog import dlg_order, dlg_sell
-from components.button.elevated_button import bttn_order, bttn_product, bttn_approve,  \
-    bttn_end_order, bttn_update, bttn_push, bttn_go_order, bttn_copy_str_order, \
-    bttn_required, bttn_assign_driver, bttn_update_sell, bttn_push_sell, bttn_go_sell, \
-    bttn_copy_str_sell, bttn_deliver, bttn_sell
-from components.button.icon_button import bttn_repeat_required, \
-    bttn_repeat_assign_driver, bttn_repeat_product, bttn_repeat_approve, \
-    bttn_settings_sell, bttn_repeat_end_order, bttn_repeat_deliver, bttn_settings
-from components.button.styles import button_style_pressed_wait, button_style_disabled, \
-    button_style_enabled, button_style_failed_disabled, button_style_pressed_access
-from components.container.container import container_txt_start_order, \
-    container_txt_start_sell, bttn_order_container, bttn_product_container, \
-    bttn_deliver_container, bttn_end_order_container, bttn_sell_container, \
-    bttn_add_product_container, bttn_required_container, bttn_assign_driver_container, \
-    bttn_driver_in_storage_container, bttn_deliver_sell_container, \
-    bttn_sign_docs_container, bttn_end_sell_container, bttn_empty, bttn_empty_2, \
-    bttn_in_work_sell_container, bttn_approve_container, bttn_delivered_sell_container
-from components.dropdown.dropdown import dropdown_users_sell, dropdown_users_order
-from components.text.text import txt_progress_bar_order, txt_progress_bar_order_sell, \
-    banner_text, txt_main_text_order, txt_main_text_sell
-from components.text_field.text_field import txt_go_order, txt_creator_order, \
-    txt_go_sell, txt_sell_str
-from components.progress_bar.progress_bar import (
-    progress_bar_order, progress_bar_sell)
+from components.alert_dialog.alert_dialog import AlertDialogs
+from components.button.elevated_button import ElevatedButtons
+from components.button.icon_button import IconButtons
+from components.button.styles import ButtonStyles
+from components.container.container import Containers
+from components.dropdown.dropdown import Dropdowns
+from components.text.text import Texts
+from components.text.text_field import TextFields
+from components.progress_bar.progress_bar import ProgressBars
 
 from press_button.fake_do_something import do_something, do_something_failed
 from data.variables import cst_head_list, list_users_sell
 
 
 def main_page(page):
+
+    button_order_container, button_order, button_settings = (
+        Containers().button_order_container())
+    button_product_container, button_product, button_repeat_product = (
+        Containers().button_product_container())
+    button_approve_container, button_approve, button_repeat_approve = (
+        Containers().button_approve_container())
+    button_deliver_container, button_deliver, button_repeat_deliver = (
+        Containers().button_deliver_container())
+    button_end_order_container, button_end_order, button_repeat_end_order = (
+        Containers().button_end_order_container())
+
+    button_sell_container, button_sell, button_settings_sell = (
+        Containers().button_sell_container())
+    button_in_work_sell_container, button_product_sell = (
+        Containers().button_product_sell_container())
+    button_add_product_container, button_add_product = (
+        Containers().button_add_product_container())
+    button_required_container, button_required, button_repeat_required = (
+        Containers().button_required_container())
+    button_assign_driver_container, button_assign_driver, button_repeat_assign_driver = (
+        Containers().button_assign_driver_container())
+
+    button_driver_in_storage_container, driver_in_storage = (
+        Containers().button_driver_in_storage_container())
+    button_deliver_sell_container, button_deliver_sell = (
+        Containers().button_deliver_sell_container())
+    button_delivered_sell_container, button_delivered_sell = (
+        Containers().button_delivered_sell_container())
+    button_sign_docs_container, button_end_order_assign_driver = (
+        Containers().button_end_order_assign_driver_container())
+    button_end_sell_container, button_end_sell = Containers().button_end_sell_container()
+
+    dialog_order, dropdown_users_order = AlertDialogs().dialog_order()
+    dialog_sell, dropdown_users_sell = AlertDialogs().dialog_sell()
+
+    txt_progress_bar_order = Texts().txt_progress_bar
+    txt_progress_bar_order_sell = Texts().txt_progress_bar
+    banner_text = Texts().banner_text
+
+    button_update = ElevatedButtons().button_update()
+    button_push = ElevatedButtons().button_push()
+    button_go_order = ElevatedButtons().button_go_to_link()
+    button_copy_str_order = ElevatedButtons().button_copy()
+    button_update_sell = ElevatedButtons().button_update()
+    button_push_sell = ElevatedButtons().button_push()
+    button_go_sell = ElevatedButtons().button_go_to_link()
+    button_copy_str_sell = ElevatedButtons().button_copy()
+
+    button_repeat_approve = IconButtons().button_icon_repeat_one
+
+    container_txt_start_order, txt_main_text_order = (
+        Containers().container_txt_start_order())
+    container_txt_start_sell, txt_main_text_sell = (
+        Containers().container_txt_start_sell())
+
+    button_empty = Containers().button_empty_sample
+    button_empty_2 = Containers().button_empty_sample
+
+    txt_go_order = TextFields().txt_go_order()
+    txt_creator_order = TextFields().txt_creator_order()
+    txt_go_sell = TextFields().txt_go_sell()
+    txt_sell_str = TextFields().txt_sell_str()
+
+    progress_bar_order = ProgressBars().progress_bar
+    progress_bar_sell = ProgressBars().progress_bar
+
     async def button_pressed(button_main, button_side, progress_bar,
                              progress_bar_text_field, text_above_pb, page):
         button_main.disabled = True
-        button_main.style = button_style_pressed_wait
+        button_main.style = ButtonStyles().button_style_pressed_wait
         button_side.disabled = True
-        button_side.style = button_style_disabled
+        button_side.style = ButtonStyles().button_style_disabled
         button_side.icon_color = ft.colors.GREY
         progress_bar.visible = True
         progress_bar.value = 0.01
@@ -50,23 +102,23 @@ def main_page(page):
     async def button_failed(button_main, button_side, progress_bar, button_update, page,
                             is_button_settings=False):
         button_main.disabled = True
-        button_main.style = button_style_failed_disabled
+        button_main.style = ButtonStyles().button_style_failed_disabled
         if is_button_settings:
             button_side.disabled = True
             button_side.icon_color = ft.colors.RED
         else:
             button_side.disabled = False
-            button_side.style = button_style_enabled
+            button_side.style = ButtonStyles().button_style_enabled
             button_side.icon_color = ft.colors.CYAN
 
         progress_bar.color = ft.colors.RED
         button_update.disabled = False
-        button_update.style = button_style_enabled
+        button_update.style = ButtonStyles().button_style_enabled
         await page.update_async()
 
     async def button_success(button_main, button_side, page, is_settings_button=False):
         button_main.disabled = True
-        button_main.style = button_style_pressed_access
+        button_main.style = ButtonStyles().button_style_pressed_access
 
         button_side.disabled = True
         if is_settings_button:
@@ -76,11 +128,11 @@ def main_page(page):
         await page.update_async()
 
     async def press_create_order(e):
-        await button_pressed(bttn_order, bttn_settings, progress_bar_order,
+        await button_pressed(button_order, button_settings, progress_bar_order,
                              txt_progress_bar_order, 'Запускаем процесс', page)
 
-        bttn_push.disabled = True
-        bttn_push.style = button_style_disabled
+        button_push.disabled = True
+        button_push.style = ButtonStyles().button_style_disabled
 
         await page.update_async()
 
@@ -97,10 +149,10 @@ def main_page(page):
             url_project_order = f'https://www.google.ru/search?q={user_for_create}'
             txt_go_order.value = url_project_order
             txt_go_order.visible = True
-            bttn_go_order.visible = True
+            button_go_order.visible = True
             txt_creator_order.value = user_for_create
             txt_creator_order.visible = True
-            bttn_copy_str_order.visible = True
+            button_copy_str_order.visible = True
             await page.update_async()
 
             await switch_txt_progress_bar(txt_progress_bar_order,
@@ -111,30 +163,30 @@ def main_page(page):
             await switch_txt_progress_bar(txt_progress_bar_order,
                                           'Успешно', page)
 
-            bttn_update.disabled = False
-            bttn_update.style = button_style_enabled
+            button_update.disabled = False
+            button_update.style = ButtonStyles().button_style_enabled
 
             await page.update_async()
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(bttn_order, bttn_settings, progress_bar_order,
-                                bttn_update, page, is_button_settings=True)
+            await button_failed(button_order, button_settings, progress_bar_order,
+                                button_update, page, is_button_settings=True)
             return 0
 
-        bttn_approve.disabled = False
-        bttn_approve.style = button_style_enabled
-        bttn_product.disabled = False
-        bttn_product.style = button_style_enabled
+        button_approve.disabled = False
+        button_approve.style = ButtonStyles().button_style_enabled
+        button_product.disabled = False
+        button_product.style = ButtonStyles().button_style_enabled
 
-        bttn_deliver.disabled = False
-        bttn_deliver.style = button_style_enabled
+        button_deliver.disabled = False
+        button_deliver.style = ButtonStyles().button_style_enabled
 
         txt_main_text_order.value = 'Завершите заказ'
         container_txt_start_order.content = txt_main_text_order
-        await button_success(bttn_order, bttn_settings, page, True)
+        await button_success(button_order, button_settings, page, True)
 
     async def press_product(e):
-        await button_pressed(bttn_product, bttn_repeat_product, progress_bar_order,
+        await button_pressed(button_product, button_repeat_product, progress_bar_order,
                              txt_progress_bar_order, 'Запускаем процесс', page)
         await page.update_async()
 
@@ -145,17 +197,17 @@ def main_page(page):
                                           'Успешно', page)
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(bttn_product, bttn_repeat_product, progress_bar_order,
-                                bttn_update, page)
+            await button_failed(button_product, button_repeat_product, progress_bar_order,
+                                button_update, page)
             return 0
 
-        if bttn_deliver.style.color == 'green':
-            bttn_end_order.disabled = False
-            bttn_end_order.style = button_style_enabled
-        await button_success(bttn_product, bttn_repeat_product, page)
+        if button_deliver.style.color == 'green':
+            button_end_order.disabled = False
+            button_end_order.style = ButtonStyles().button_style_enabled
+        await button_success(button_product, button_repeat_product, page)
 
     async def press_approve(e):
-        await button_pressed(bttn_approve, bttn_repeat_approve, progress_bar_order,
+        await button_pressed(button_approve, button_repeat_approve, progress_bar_order,
                              txt_progress_bar_order, 'Запускаем процесс', page)
         await page.update_async()
 
@@ -166,14 +218,14 @@ def main_page(page):
                                           'Успешно', page)
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(bttn_approve, bttn_repeat_approve, progress_bar_order,
-                                bttn_update, page)
+            await button_failed(button_approve, button_repeat_approve, progress_bar_order,
+                                button_update, page)
             return 0
 
-        await button_success(bttn_approve, bttn_repeat_approve, page)
+        await button_success(button_approve, button_repeat_approve, page)
 
     async def press_deliver(e):
-        await button_pressed(bttn_deliver, bttn_repeat_deliver, progress_bar_order,
+        await button_pressed(button_deliver, button_repeat_deliver, progress_bar_order,
                              txt_progress_bar_order, 'Запускаем процесс', page)
         await page.update_async()
 
@@ -188,17 +240,17 @@ def main_page(page):
 
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(bttn_deliver, bttn_repeat_deliver, progress_bar_order,
-                                bttn_update, page)
+            await button_failed(button_deliver, button_repeat_deliver, progress_bar_order,
+                                button_update, page)
             return 0
 
-        if bttn_product.style.color == 'green':
-            bttn_end_order.disabled = False
-            bttn_end_order.style = button_style_enabled
-        await button_success(bttn_deliver, bttn_repeat_deliver, page)
+        if button_product.style.color == 'green':
+            button_end_order.disabled = False
+            button_end_order.style = ButtonStyles().button_style_enabled
+        await button_success(button_deliver, button_repeat_deliver, page)
 
     async def press_end_order(e):
-        await button_pressed(bttn_end_order, bttn_repeat_end_order, progress_bar_order,
+        await button_pressed(button_end_order, button_repeat_end_order, progress_bar_order,
                              txt_progress_bar_order, 'Запускаем процесс', page)
         await page.update_async()
 
@@ -213,11 +265,12 @@ def main_page(page):
 
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(bttn_end_order, bttn_repeat_end_order, progress_bar_order,
-                                bttn_update, page)
+            await button_failed(button_end_order, button_repeat_end_order,
+                                progress_bar_order,
+                                button_update, page)
             return 0
 
-        await button_success(bttn_end_order, bttn_repeat_end_order, page)
+        await button_success(button_end_order, button_repeat_end_order, page)
 
     async def press_update(e):
         txt_main_text_order.value = 'Создайте заказ'
@@ -227,50 +280,50 @@ def main_page(page):
         progress_bar_order.visible = False
         txt_progress_bar_order.visible = False
 
-        bttn_update.style = button_style_disabled
-        bttn_update.disabled = True
+        button_update.style = ButtonStyles().button_style_disabled
+        button_update.disabled = True
 
-        bttn_order.disabled = False
-        bttn_order.style = button_style_enabled
+        button_order.disabled = False
+        button_order.style = ButtonStyles().button_style_enabled
 
-        bttn_product.disabled = True
-        bttn_product.style = button_style_disabled
+        button_product.disabled = True
+        button_product.style = ButtonStyles().button_style_disabled
 
-        bttn_approve.disabled = True
-        bttn_approve.style = button_style_disabled
+        button_approve.disabled = True
+        button_approve.style = ButtonStyles().button_style_disabled
 
-        bttn_deliver.disabled = True
-        bttn_deliver.style = button_style_disabled
+        button_deliver.disabled = True
+        button_deliver.style = ButtonStyles().button_style_disabled
 
-        bttn_end_order.disabled = True
-        bttn_end_order.style = button_style_disabled
+        button_end_order.disabled = True
+        button_end_order.style = ButtonStyles().button_style_disabled
 
-        bttn_push.disabled = False
-        bttn_push.style = button_style_enabled
+        button_push.disabled = False
+        button_push.style = ButtonStyles().button_style_enabled
 
         txt_go_order.visible = False
-        bttn_go_order.visible = False
+        button_go_order.visible = False
 
         txt_creator_order.visible = False
-        bttn_copy_str_order.visible = False
+        button_copy_str_order.visible = False
 
-        bttn_repeat_approve.disabled = True
-        bttn_repeat_product.disabled = True
-        bttn_repeat_deliver.disabled = True
-        bttn_repeat_end_order.disabled = True
+        button_repeat_approve.disabled = True
+        button_repeat_product.disabled = True
+        button_repeat_deliver.disabled = True
+        button_repeat_end_order.disabled = True
 
-        bttn_repeat_approve.style = button_style_disabled
-        bttn_repeat_product.style = button_style_disabled
-        bttn_repeat_deliver.style = button_style_disabled
-        bttn_repeat_end_order.style = button_style_disabled
+        button_repeat_approve.style = ButtonStyles().button_style_disabled
+        button_repeat_product.style = ButtonStyles().button_style_disabled
+        button_repeat_deliver.style = ButtonStyles().button_style_disabled
+        button_repeat_end_order.style = ButtonStyles().button_style_disabled
 
-        bttn_repeat_approve.icon_color = ft.colors.GREY
-        bttn_repeat_product.icon_color = ft.colors.GREY
-        bttn_repeat_deliver.icon_color = ft.colors.GREY
-        bttn_repeat_end_order.icon_color = ft.colors.GREY
+        button_repeat_approve.icon_color = ft.colors.GREY
+        button_repeat_product.icon_color = ft.colors.GREY
+        button_repeat_deliver.icon_color = ft.colors.GREY
+        button_repeat_end_order.icon_color = ft.colors.GREY
 
-        bttn_settings.disabled = False
-        bttn_settings.icon_color = ft.colors.CYAN
+        button_settings.disabled = False
+        button_settings.icon_color = ft.colors.CYAN
 
         await page.update_async()
 
@@ -282,46 +335,46 @@ def main_page(page):
         progress_bar_sell.visible = False
         txt_progress_bar_order_sell.visible = False
 
-        bttn_update_sell.style = button_style_disabled
-        bttn_update_sell.disabled = True
+        button_update_sell.style = ButtonStyles().button_style_disabled
+        button_update_sell.disabled = True
 
-        bttn_sell.style = button_style_enabled
-        bttn_sell.disabled = False
+        button_sell.style = ButtonStyles().button_style_enabled
+        button_sell.disabled = False
 
-        bttn_required.style = button_style_disabled
-        bttn_required.disabled = True
+        button_required.style = ButtonStyles().button_style_disabled
+        button_required.disabled = True
 
-        bttn_assign_driver.style = button_style_disabled
-        bttn_assign_driver.disabled = True
+        button_assign_driver.style = ButtonStyles().button_style_disabled
+        button_assign_driver.disabled = True
 
         txt_go_sell.visible = False
-        bttn_go_sell.visible = False
+        button_go_sell.visible = False
 
         txt_sell_str.visible = False
-        bttn_copy_str_sell.visible = False
+        button_copy_str_sell.visible = False
 
-        bttn_push_sell.disabled = False
-        bttn_push_sell.style = button_style_enabled
+        button_push_sell.disabled = False
+        button_push_sell.style = ButtonStyles().button_style_enabled
 
-        bttn_repeat_required.disabled = True
-        bttn_repeat_assign_driver.disabled = True
+        button_repeat_required.disabled = True
+        button_repeat_assign_driver.disabled = True
 
-        bttn_repeat_required.style = button_style_disabled
-        bttn_repeat_assign_driver.style = button_style_disabled
+        button_repeat_required.style = ButtonStyles().button_style_disabled
+        button_repeat_assign_driver.style = ButtonStyles().button_style_disabled
 
-        bttn_repeat_required.icon_color = ft.colors.GREY
-        bttn_repeat_assign_driver.icon_color = ft.colors.GREY
+        button_repeat_required.icon_color = ft.colors.GREY
+        button_repeat_assign_driver.icon_color = ft.colors.GREY
 
-        bttn_settings_sell.disabled = False
-        bttn_settings_sell.icon_color = ft.colors.CYAN
+        button_settings_sell.disabled = False
+        button_settings_sell.icon_color = ft.colors.CYAN
 
         await page.update_async()
 
     async def press_sell(e):
-        bttn_push_sell.disabled = True
-        bttn_push_sell.style = button_style_disabled
+        button_push_sell.disabled = True
+        button_push_sell.style = ButtonStyles().button_style_disabled
 
-        await button_pressed(bttn_sell, bttn_settings_sell, progress_bar_sell,
+        await button_pressed(button_sell, button_settings_sell, progress_bar_sell,
                              txt_progress_bar_order_sell, 'Запускаем процесс', page)
 
         try:
@@ -342,10 +395,10 @@ def main_page(page):
             url_sell = f'https://www.google.ru/search?q={user_for_create}'
             txt_go_sell.value = url_sell
             txt_go_sell.visible = True
-            bttn_go_sell.visible = True
+            button_go_sell.visible = True
             txt_sell_str.value = user_for_create
             txt_sell_str.visible = True
-            bttn_copy_str_sell.visible = True
+            button_copy_str_sell.visible = True
 
             await switch_txt_progress_bar(txt_progress_bar_order_sell,
                                           'Устанавливаем дату старта', page)
@@ -377,23 +430,23 @@ def main_page(page):
             await do_something()
             await change_progress_bar(progress_bar_sell, 1)
 
-            bttn_update_sell.disabled = False
-            bttn_update_sell.style = button_style_enabled
+            button_update_sell.disabled = False
+            button_update_sell.style = ButtonStyles().button_style_enabled
 
             await switch_txt_progress_bar(txt_progress_bar_order_sell,
                                           'Успешно', page)
 
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(bttn_sell, bttn_settings_sell, progress_bar_sell,
-                                bttn_update_sell, page, is_button_settings=True)
+            await button_failed(button_sell, button_settings_sell, progress_bar_sell,
+                                button_update_sell, page, is_button_settings=True)
             return 0
 
-        bttn_required.disabled = False
-        bttn_required.style = button_style_enabled
-        bttn_assign_driver.disabled = False
-        bttn_assign_driver.style = button_style_enabled
-        await button_success(bttn_sell, bttn_settings_sell, page, True)
+        button_required.disabled = False
+        button_required.style = ButtonStyles().button_style_enabled
+        button_assign_driver.disabled = False
+        button_assign_driver.style = ButtonStyles().button_style_enabled
+        await button_success(button_sell, button_settings_sell, page, True)
 
     async def press_push(e):
         if await press_create_order(e) != 0:
@@ -408,7 +461,7 @@ def main_page(page):
                 await press_assign_driver(e)
 
     async def press_required(e):
-        await button_pressed(bttn_required, bttn_repeat_required, progress_bar_sell,
+        await button_pressed(button_required, button_repeat_required, progress_bar_sell,
                              txt_progress_bar_order_sell, 'Запускаем процесс', page)
         try:
             await switch_txt_progress_bar(txt_progress_bar_order_sell,
@@ -437,14 +490,14 @@ def main_page(page):
 
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(bttn_required, bttn_repeat_required, progress_bar_sell,
-                                bttn_update_sell, page)
+            await button_failed(button_required, button_repeat_required, progress_bar_sell,
+                                button_update_sell, page)
             return 0
 
-        await button_success(bttn_required, bttn_repeat_required, page, True)
+        await button_success(button_required, button_repeat_required, page, True)
 
     async def press_assign_driver(e):
-        await button_pressed(bttn_assign_driver, bttn_repeat_assign_driver,
+        await button_pressed(button_assign_driver, button_repeat_assign_driver,
                              progress_bar_sell, txt_progress_bar_order_sell,
                              'Запускаем процесс', page)
         try:
@@ -472,11 +525,11 @@ def main_page(page):
 
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(bttn_assign_driver, bttn_repeat_assign_driver,
-                                progress_bar_sell, bttn_update_sell, page)
+            await button_failed(button_assign_driver, button_repeat_assign_driver,
+                                progress_bar_sell, button_update_sell, page)
             return 0
 
-        await button_success(bttn_assign_driver, bttn_repeat_assign_driver, page, True)
+        await button_success(button_assign_driver, button_repeat_assign_driver, page, True)
 
     async def press_go_order(e):
         await page.launch_url_async(txt_go_order.value)
@@ -484,13 +537,13 @@ def main_page(page):
     async def press_go_sell(e):
         await page.launch_url_async(txt_go_sell.value)
 
-    async def press_dlg_order(e):
-        bttn_settings.disabled = True
-        bttn_settings.icon_color = ft.colors.GREY
+    async def press_dialog_order(e):
+        button_settings.disabled = True
+        button_settings.icon_color = ft.colors.GREY
         await page.update_async()
 
-        page.dialog = dlg_order
-        dlg_order.open = True
+        page.dialog = dialog_order
+        dialog_order.open = True
 
         try:
             await do_something()
@@ -504,19 +557,19 @@ def main_page(page):
             dropdown_users_order.options.append(ft.dropdown.Option(user))
         await page.update_async()
 
-    async def press_dlg_sell(e):
-        bttn_settings_sell.disabled = True
-        bttn_settings_sell.icon_color = ft.colors.GREY
+    async def press_dialog_sell(e):
+        button_settings_sell.disabled = True
+        button_settings_sell.icon_color = ft.colors.GREY
         await page.update_async()
 
-        page.dialog = dlg_sell
-        dlg_sell.open = True
+        page.dialog = dialog_sell
+        dialog_sell.open = True
         try:
             await do_something()
         except:
             await open_banner_with_error(traceback.format_exc())
-            bttn_settings_sell.disabled = False
-            bttn_settings_sell.icon_color = ft.colors.RED
+            button_settings_sell.disabled = False
+            button_settings_sell.icon_color = ft.colors.RED
             await page.update_async()
             traceback.print_exc()
             return 0
@@ -555,48 +608,48 @@ def main_page(page):
     async def copy_in_buffer_txt_banner(e):
         await page.set_clipboard_async(banner_text.value)
 
-    async def dlg_exit(e):
-        if bttn_settings.disabled:
-            bttn_settings.disabled = False
-            bttn_settings.icon_color = ft.colors.CYAN
-        elif bttn_settings_sell.disabled:
-            bttn_settings_sell.disabled = False
-            bttn_settings_sell.icon_color = ft.colors.CYAN
+    async def dialog_exit(e):
+        if button_settings.disabled:
+            button_settings.disabled = False
+            button_settings.icon_color = ft.colors.CYAN
+        elif button_settings_sell.disabled:
+            button_settings_sell.disabled = False
+            button_settings_sell.icon_color = ft.colors.CYAN
         await page.update_async()
 
-    bttn_repeat_required.on_click = press_required
-    bttn_repeat_assign_driver.on_click = press_assign_driver
-    bttn_repeat_product.on_click = press_product
-    bttn_repeat_approve.on_click = press_approve
-    bttn_repeat_deliver.on_click = press_deliver
-    bttn_repeat_end_order.on_click = press_end_order
+    button_repeat_required.on_click = press_required
+    button_repeat_assign_driver.on_click = press_assign_driver
+    button_repeat_product.on_click = press_product
+    button_repeat_approve.on_click = press_approve
+    button_repeat_deliver.on_click = press_deliver
+    button_repeat_end_order.on_click = press_end_order
 
-    bttn_settings.on_click = press_dlg_order
-    bttn_settings_sell.on_click = press_dlg_sell
+    button_settings.on_click = press_dialog_order
+    button_settings_sell.on_click = press_dialog_sell
 
-    dlg_order.on_dismiss = dlg_exit
-    dlg_sell.on_dismiss = dlg_exit
+    dialog_order.on_dismiss = dialog_exit
+    dialog_sell.on_dismiss = dialog_exit
 
-    bttn_order.on_click = press_create_order
-    bttn_product.on_click = press_product
-    bttn_approve.on_click = press_approve
-    bttn_deliver.on_click = press_deliver
-    bttn_end_order.on_click = press_end_order
-    bttn_update.on_click = press_update
-    bttn_push.on_click = press_push
+    button_order.on_click = press_create_order
+    button_product.on_click = press_product
+    button_approve.on_click = press_approve
+    button_deliver.on_click = press_deliver
+    button_end_order.on_click = press_end_order
+    button_update.on_click = press_update
+    button_push.on_click = press_push
 
-    bttn_go_order.on_click = press_go_order
-    bttn_copy_str_order.on_click = copy_in_buffer_txt_order
+    button_go_order.on_click = press_go_order
+    button_copy_str_order.on_click = copy_in_buffer_txt_order
 
-    bttn_sell.on_click = press_sell
-    bttn_required.on_click = press_required
-    bttn_assign_driver.on_click = press_assign_driver
+    button_sell.on_click = press_sell
+    button_required.on_click = press_required
+    button_assign_driver.on_click = press_assign_driver
 
-    bttn_update_sell.on_click = press_update_sell
-    bttn_push_sell.on_click = press_push_sell
+    button_update_sell.on_click = press_update_sell
+    button_push_sell.on_click = press_push_sell
 
-    bttn_go_sell.on_click = press_go_sell
-    bttn_copy_str_sell.on_click = copy_in_buffer_txt_sell
+    button_go_sell.on_click = press_go_sell
+    button_copy_str_sell.on_click = copy_in_buffer_txt_sell
 
     page.banner = ft.Banner(
         leading=ft.Icon(ft.icons.WARNING_AMBER_ROUNDED, color=ft.colors.RED, size=40),
@@ -614,13 +667,13 @@ def main_page(page):
 
     content = ft.Column([
         container_txt_start_order,
-        ft.Row([bttn_order_container,
-                bttn_product_container,
-                bttn_approve_container,
-                bttn_deliver_container,
-                bttn_end_order_container,
-                bttn_update,
-                bttn_push],
+        ft.Row([button_order_container,
+                button_product_container,
+                button_approve_container,
+                button_deliver_container,
+                button_end_order_container,
+                button_update,
+                button_push],
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER,
                offset=(0, -0.17)),
@@ -632,30 +685,30 @@ def main_page(page):
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER,
                offset=(0, -0.6)),
-        ft.Row([txt_go_order, bttn_go_order],
+        ft.Row([txt_go_order, button_go_order],
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER),
-        ft.Row([txt_creator_order, bttn_copy_str_order],
+        ft.Row([txt_creator_order, button_copy_str_order],
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER),
         container_txt_start_sell,
-        ft.Row([bttn_sell_container,
-                bttn_in_work_sell_container,
-                bttn_add_product_container,
-                bttn_required_container,
-                bttn_assign_driver_container,
-                bttn_empty,
-                bttn_empty_2],
+        ft.Row([button_sell_container,
+                button_in_work_sell_container,
+                button_add_product_container,
+                button_required_container,
+                button_assign_driver_container,
+                button_empty,
+                button_empty_2],
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER,
                offset=(0, -0.25)),
-        ft.Row([bttn_driver_in_storage_container,
-                bttn_deliver_sell_container,
-                bttn_delivered_sell_container,
-                bttn_sign_docs_container,
-                bttn_end_sell_container,
-                bttn_update_sell,
-                bttn_push_sell],
+        ft.Row([button_driver_in_storage_container,
+                button_deliver_sell_container,
+                button_delivered_sell_container,
+                button_sign_docs_container,
+                button_end_sell_container,
+                button_update_sell,
+                button_push_sell],
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER,
                offset=(0, -0.25)),
@@ -667,10 +720,10 @@ def main_page(page):
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER,
                offset=(0, -0.6)),
-        ft.Row([txt_go_sell, bttn_go_sell],
+        ft.Row([txt_go_sell, button_go_sell],
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER),
-        ft.Row([txt_sell_str, bttn_copy_str_sell],
+        ft.Row([txt_sell_str, button_copy_str_sell],
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER),
     ])

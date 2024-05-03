@@ -1,10 +1,19 @@
 import flet as ft
 
-from components.text.text import stands_header, stands_1, stands_2, stands_3, stands_4, \
-    stands_5, stands_6, stands_7, stands_8
+from components.text.text import Texts
 
 
 def stands_page(page):
+    stands_header = Texts().stands_header()
+    stands_1 = Texts().stands_1()
+    stands_2 = Texts().stands_2()
+    stands_3 = Texts().stands_3()
+    stands_4 = Texts().stands_4()
+    stands_5 = Texts().stands_5()
+    stands_6 = Texts().stands_6()
+    stands_7 = Texts().stands_7()
+    stands_8 = Texts().stands_8()
+
     page.scroll = 'AUTO'
 
     datatable = ft.DataTable(data_row_max_height=60, offset=(0, 0.02), columns=[

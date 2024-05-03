@@ -1,10 +1,16 @@
 import flet as ft
 
-from components.icon.icon import icon_tg, icon_yt
-from components.text.text import container_app_version, txt_tg, txt_yt
+from components.icon.icon import Icons
+from components.text.text import Texts
 
 
 def info_page(page):
+
+    icon_tg = Icons().icon_tg
+    icon_yt = Icons().icon_yt
+    txt_tg = Texts().txt_tg
+    txt_yt = Texts().txt_yt
+    container_app_version = Texts().container_app_version
 
     async def press_tg(e):
         await page.launch_url_async('https://t.me/KononovQA')

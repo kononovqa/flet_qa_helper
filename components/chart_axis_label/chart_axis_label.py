@@ -1,3 +1,6 @@
 import flet as ft
 
-example_horizontal_data = ft.ChartAxisLabel(value=0)
+
+class ChartsAxisLabels:
+    def __init__(self):
+        self.example_horizontal_data = ft.ChartAxisLabel(value=0)

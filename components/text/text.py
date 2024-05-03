@@ -1,158 +1,220 @@
-import copy
 import flet as ft
 
-from components.text.styles import header_text_style
-from components.text_span.text_span import example_textspan
+from components.button.styles import ButtonStyles
+from components.text.text_span import TextSpans
 
-# main text
-txt_main_text = ft.Text(value='',
-                        font_family='Arial',
-                        size=20,
-                        color=ft.colors.WHITE)
 
-txt_header_text = ft.Text(value="",
-                          style=header_text_style,
-                          color=ft.colors.WHITE,
-                          size=22)
+class Texts:
+    def __init__(self):
+        # main text
+        self.txt_main_text = ft.Text(value='',
+                                     font_family='Arial',
+                                     size=20,
+                                     color=ft.colors.WHITE)
 
-# header text
-txt_header_main = copy.deepcopy(txt_header_text)
-txt_header_main.value = 'Главная'
-txt_header_tools = copy.deepcopy(txt_header_text)
-txt_header_tools.value = 'Инструменты'
-txt_header_info = copy.deepcopy(txt_header_text)
-txt_header_info.value = 'Информация'
-txt_header_autotests = copy.deepcopy(txt_header_text)
-txt_header_autotests.value = 'Автотесты'
-txt_header_stands = copy.deepcopy(txt_header_text)
-txt_header_stands.value = 'Стенды'
+        self.txt_header_text = ft.Text(value='',
+                                       style=ButtonStyles().header_text_style,
+                                       color=ft.colors.WHITE,
+                                       size=22)
 
-txt_main_text_sell = copy.deepcopy(txt_main_text)
-txt_main_text_sell.value = 'Создайте продажу'
+        # text in buttons
+        self.text_in_buttons = ft.Text(value='',
+                                       text_align=ft.TextAlign.CENTER)
 
-txt_main_text_order = copy.deepcopy(txt_main_text)
-txt_main_text_order.value = 'Создайте заказ'
+        # progress bar
+        self.txt_progress_bar = ft.Text(value='',
+                                        font_family='Arial',
+                                        size=12,
+                                        color=ft.colors.WHITE70,
+                                        visible=False)
 
-# text in buttons
-text_in_buttons = ft.Text(value='',
-                          text_align=ft.TextAlign.CENTER)
+        # banner
+        self.banner_text = ft.Text("",
+                                   color=ft.colors.RED)
 
-create_order_txt = copy.deepcopy(text_in_buttons)
-create_order_txt.value = 'Создать новый заказ'
+        # tools page
+        self.txt_progress_reset_password = ft.Text(value="",
+                                                   color=ft.colors.GREY)
 
-bttn_product_txt = copy.deepcopy(text_in_buttons)
-bttn_product_txt.value = 'Выбрать случайного поставщика и товар'
+        # stands page
+        self.stands_text = ft.Text("",
+                                   size=15,
+                                   weight=ft.FontWeight.BOLD,
+                                   width=89,
+                                   text_align=ft.TextAlign.CENTER)
 
-bttn_approve_txt = copy.deepcopy(text_in_buttons)
-bttn_approve_txt.value = 'Согласовать'
+        # info page
+        self.container_app_version = ft.Text(
+            value='Версия приложения: 1.1.0 \n',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE)
 
-bttn_deliver_txt = copy.deepcopy(text_in_buttons)
-bttn_deliver_txt.value = 'Доставить'
+        self.txt_tg = ft.Text(
+            value='@KononovQA',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE)
 
-bttn_end_order_txt = copy.deepcopy(text_in_buttons)
-bttn_end_order_txt.value = 'Завершить заказ'
+        self.txt_yt = ft.Text(
+            value='@KononovQA',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE)
 
-bttn_sell_txt = copy.deepcopy(text_in_buttons)
-bttn_sell_txt.value = 'Создать продажу'
+        # autotests page
+        self.name_service = ft.Text(
+            value='name_service',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE,
+            offset=(0, -0.8))
 
-bttn_product_sell_txt = copy.deepcopy(text_in_buttons)
-bttn_product_sell_txt.value = 'В работе'
+        self.example_horizontal_text = ft.Text(
+            spans=[TextSpans().example_textspan],
+            size=16,
+            color=ft.colors.WHITE,
+            rotate=ft.Rotate(angle=-1.57),
+            offset=ft.Offset(0.025, 2.9)
+        )
 
-bttn_approve_sell_txt = copy.deepcopy(text_in_buttons)
-bttn_approve_sell_txt.value = 'Добавить товары'
+    def txt_header_main(self):
+        self.txt_main_text.value = 'Главная'
+        return self.txt_main_text
 
-bttn_required_txt = copy.deepcopy(text_in_buttons)
-bttn_required_txt.value = 'Заполнить обязательные поля'
+    def txt_header_tools(self):
+        self.txt_main_text.value = 'Инструменты'
+        return self.txt_main_text
 
-bttn_assign_driver_txt = copy.deepcopy(text_in_buttons)
-bttn_assign_driver_txt.value = 'Назначить водителя'
+    def txt_header_info(self):
+        self.txt_main_text.value = 'Информация'
+        return self.txt_main_text
 
-bttn_end_order_required_txt = copy.deepcopy(text_in_buttons)
-bttn_end_order_required_txt.value = 'Водитель на складе'
+    def txt_header_autotests(self):
+        self.txt_main_text.value = 'Автотесты'
+        return self.txt_main_text
 
-bttn_end_order_prav_txt = copy.deepcopy(text_in_buttons)
-bttn_end_order_prav_txt.value = 'Доставка'
+    def txt_header_stands(self):
+        self.txt_main_text.value = 'Стенды'
+        return self.txt_main_text
 
-bttn_end_order_obes_txt = copy.deepcopy(text_in_buttons)
-bttn_end_order_obes_txt.value = 'Доставлено'
+    def txt_main_text_sell(self):
+        self.txt_main_text.value = 'Создайте продажу'
+        return self.txt_main_text
 
-bttn_end_order_assign_driver_txt = copy.deepcopy(text_in_buttons)
-bttn_end_order_assign_driver_txt.value = 'Заполнить закрывающие документы'
+    def txt_main_text_order(self):
+        self.txt_main_text.value = 'Создайте заказ'
+        return self.txt_main_text
 
-bttn_end_sell_txt = copy.deepcopy(text_in_buttons)
-bttn_end_sell_txt.value = 'Завершить продажу'
+    def create_order_txt(self):
+        self.text_in_buttons.value = 'Создать новый заказ'
+        return self.text_in_buttons
 
-# progress bar
-txt_progress_bar = ft.Text(value='',
-                           font_family='Arial',
-                           size=12,
-                           color=ft.colors.WHITE70,
-                           visible=False)
+    def button_product_txt(self):
+        self.text_in_buttons.value = 'Выбрать случайного поставщика и товар'
+        return self.text_in_buttons
 
-txt_progress_bar_order = copy.deepcopy(txt_progress_bar)
-txt_progress_bar_order_sell = copy.deepcopy(txt_progress_bar)
+    def button_approve_txt(self):
+        self.text_in_buttons.value = 'Согласовать'
+        return self.text_in_buttons
 
-# banner
-banner_text = ft.Text("", color=ft.colors.RED)
+    def button_deliver_txt(self):
+        self.text_in_buttons.value = 'Доставить'
+        return self.text_in_buttons
 
-# tools page
-txt_progress_reset_password = ft.Text(value="", color=ft.colors.GREY)
+    def button_end_order_txt(self):
+        self.text_in_buttons.value = 'Завершить заказ'
+        return self.text_in_buttons
 
-# stands page
-stands_text = ft.Text("", size=15, weight=ft.FontWeight.BOLD,
-                      width=89, text_align=ft.TextAlign.CENTER)
+    def button_sell_txt(self):
+        self.text_in_buttons.value = 'Создать продажу'
+        return self.text_in_buttons
 
-stands_header = copy.deepcopy(stands_text)
-stands_header.value = "Окружение Сервис"
+    def button_product_sell_txt(self):
+        self.text_in_buttons.value = 'В работе'
+        return self.text_in_buttons
 
-stands_1 = copy.deepcopy(stands_text)
-stands_1.value = "STAND 1"
-stands_2 = copy.deepcopy(stands_text)
-stands_2.value = "STAND 2"
-stands_3 = copy.deepcopy(stands_text)
-stands_3.value = "STAND 3"
-stands_4 = copy.deepcopy(stands_text)
-stands_4.value = "STAND 4"
-stands_5 = copy.deepcopy(stands_text)
-stands_5.value = "STAND 5"
-stands_6 = copy.deepcopy(stands_text)
-stands_6.value = "STAND 6"
-stands_7 = copy.deepcopy(stands_text)
-stands_7.value = "STAND 7"
-stands_8 = copy.deepcopy(stands_text)
-stands_8.value = "STAND 8"
+    def button_add_product_txt(self):
+        self.text_in_buttons.value = 'Добавить товары'
+        return self.text_in_buttons
 
-# info page
-container_app_version = ft.Text(
-    value='Версия приложения: 1.0.0 \n',
-    font_family='Arial',
-    size=20,
-    color=ft.colors.WHITE)
+    def button_required_txt(self):
+        self.text_in_buttons.value = 'Заполнить обязательные поля'
+        return self.text_in_buttons
 
-txt_tg = ft.Text(
-    value='@KononovQA',
-    font_family='Arial',
-    size=20,
-    color=ft.colors.WHITE)
+    def button_assign_driver_txt(self):
+        self.text_in_buttons.value = 'Назначить водителя'
+        return self.text_in_buttons
 
-txt_yt = ft.Text(
-    value='@KononovQA',
-    font_family='Arial',
-    size=20,
-    color=ft.colors.WHITE)
+    def driver_in_storage_txt(self):
+        self.text_in_buttons.value = 'Водитель на складе'
+        return self.text_in_buttons
 
-# autotests page
-name_service = ft.Text(
-    value='name_service',
-    font_family='Arial',
-    size=20,
-    color=ft.colors.WHITE,
-    offset=(0, -0.8))
+    def button_deliver_sell_txt(self):
+        self.text_in_buttons.value = 'Доставка'
+        return self.text_in_buttons
 
-example_horizontal_text = ft.Text(
-    spans=[example_textspan],
-    size=16,
-    color=ft.colors.WHITE,
-    rotate=ft.Rotate(angle=-1.57),
-    offset=ft.Offset(0.025, 2.9)
-)
+    def button_delivered_sell_txt(self):
+        self.text_in_buttons.value = 'Доставлено'
+        return self.text_in_buttons
+
+    def button_end_order_assign_driver_txt(self):
+        self.text_in_buttons.value = 'Заполнить закрывающие документы'
+        return self.text_in_buttons
+
+    def button_end_sell_txt(self):
+        self.text_in_buttons.value = 'Завершить продажу'
+        return self.text_in_buttons
+
+    def text_delete_order(self):
+        self.text_in_buttons.value = "Удалить заказ"
+        return self.text_in_buttons
+
+    def text_button_reset_password(self):
+        self.text_in_buttons.value = "Сбросить всем пользователям пароли"
+        self.text_in_buttons.visible = False
+        return self.text_in_buttons
+
+    def stands_header(self):
+        self.stands_text.value = "Окружение Сервис"
+        return self.stands_text
+
+    def stands_1(self):
+        self.stands_text.value = "STAND 1"
+        return self.stands_text
+
+    def stands_2(self):
+        self.stands_text.value = "STAND 2"
+        return self.stands_text
+
+    def stands_3(self):
+        self.stands_text.value = "STAND 3"
+        return self.stands_text
+
+    def stands_4(self):
+        self.stands_text.value = "STAND 4"
+        return self.stands_text
+
+    def stands_5(self):
+        self.stands_text.value = "STAND 5"
+        return self.stands_text
+
+    def stands_6(self):
+        self.stands_text.value = "STAND 6"
+        return self.stands_text
+
+    def stands_7(self):
+        self.stands_text.value = "STAND 7"
+        return self.stands_text
+
+    def stands_8(self):
+        self.stands_text.value = "STAND 8"
+        return self.stands_text
+
+    def dialog_order_txt(self):
+        self.txt_header_text.value = "Выберите владельца заказа"
+        return self.txt_header_text
+
+    def dialog_sell_txt(self):
+        self.txt_header_text.value = "Выберите владельца продажи"
+        return self.txt_header_text

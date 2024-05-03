@@ -1,62 +1,115 @@
-import copy
 import flet as ft
 
-from components.button.elevated_button import bttn_order, bttn_product, bttn_approve, \
-    bttn_end_order, bttn_sell, bttn_approve_sell, bttn_required, bttn_assign_driver, \
-    bttn_end_order_prav, bttn_end_order_obes, bttn_end_order_assign_driver, \
-    bttn_deliver, bttn_product_sell, bttn_end_order_required, bttn_end_order, \
-    bttn_end_sell
-from components.button.icon_button import bttn_settings, bttn_repeat_product, \
-    bttn_repeat_deliver, icon_lock, bttn_settings_sell, bttn_repeat_required, \
-    bttn_repeat_end_order, bttn_repeat_approve, bttn_repeat_assign_driver
-
-stack_main_button = ft.Stack(controls=[], width=220, height=75)
-stack_square_button = ft.Stack(controls=[], width=75, height=75)
+from components.button.elevated_button import ElevatedButtons
+from components.button.icon_button import IconButtons
 
 
-bttn_order_stack = copy.deepcopy(stack_main_button)
-bttn_order_stack.controls = [bttn_order, bttn_settings]
+class Stacks:
+    def __init__(self):
+        self.stack_main_button = ft.Stack(
+            controls=[],
+            width=220,
+            height=75)
+        self.stack_square_button = ft.Stack(
+            controls=[],
+            width=75,
+            height=75)
 
-bttn_product_stack = copy.deepcopy(stack_main_button)
-bttn_product_stack.controls = [bttn_product, bttn_repeat_product]
+    def button_order_stack(self):
+        button_order = ElevatedButtons().button_order()
+        button_icon_settings = IconButtons().button_icon_settings
+        self.stack_main_button.controls = [button_order,
+                                           button_icon_settings]
+        return self.stack_main_button, button_order, button_icon_settings
 
-bttn_approve_stack = copy.deepcopy(stack_main_button)
-bttn_approve_stack.controls = [bttn_approve, bttn_repeat_approve]
+    def button_product_stack(self):
+        button_product = ElevatedButtons().button_product()
+        button_repeat_product = IconButtons().button_icon_repeat_one
+        self.stack_main_button.controls = [button_product,
+                                           button_repeat_product]
+        return self.stack_main_button, button_product, button_repeat_product
 
-bttn_deliver_stack = copy.deepcopy(stack_main_button)
-bttn_deliver_stack.controls = [bttn_deliver, bttn_repeat_deliver]
+    def button_approve_stack(self):
+        button_approve = ElevatedButtons().button_approve()
+        button_repeat_approve = IconButtons().button_icon_repeat_one
+        self.stack_main_button.controls = [button_approve,
+                                           button_repeat_approve]
+        return self.stack_main_button, button_approve, button_repeat_approve
 
-bttn_end_order_stack = copy.deepcopy(stack_main_button)
-bttn_end_order_stack.controls = [bttn_end_order, bttn_repeat_end_order]
+    def button_deliver_stack(self):
+        button_deliver = ElevatedButtons().button_deliver()
+        button_repeat_deliver = IconButtons().button_icon_repeat_one
+        self.stack_main_button.controls = [button_deliver,
+                                           button_repeat_deliver]
+        return self.stack_main_button, button_deliver, button_repeat_deliver
 
+    def button_deliver_sell_stack(self):
+        button_deliver_sell = ElevatedButtons().button_deliver_sell()
+        self.stack_main_button.controls = [button_deliver_sell,
+                                           IconButtons().button_icon_lock]
+        return self.stack_main_button, button_deliver_sell
 
-bttn_sell_stack = copy.deepcopy(stack_main_button)
-bttn_sell_stack.controls = [bttn_sell, bttn_settings_sell]
+    def button_delivered_sell_stack(self):
+        button_delivered_sell = ElevatedButtons().button_delivered_sell()
+        self.stack_main_button.controls = [button_delivered_sell,
+                                           IconButtons().button_icon_lock]
+        return self.stack_main_button, button_delivered_sell
 
-bttn_approve_sell_stack = copy.deepcopy(stack_main_button)
-bttn_approve_sell_stack.controls = [bttn_approve_sell, copy.deepcopy(icon_lock)]
+    def button_end_order_stack(self):
+        button_end_order = ElevatedButtons().button_end_order()
+        button_repeat_end_order = IconButtons().button_icon_repeat_one
+        self.stack_main_button.controls = [button_end_order,
+                                           button_repeat_end_order]
+        return self.stack_main_button, button_end_order, button_repeat_end_order
 
-bttn_required_stack = copy.deepcopy(stack_main_button)
-bttn_required_stack.controls = [bttn_required, bttn_repeat_required]
+    def button_sell_stack(self):
+        button_sell = ElevatedButtons().button_sell()
+        button_settings_sell = IconButtons().button_icon_settings
+        self.stack_main_button.controls = [button_sell,
+                                           button_settings_sell]
+        return self.stack_main_button, button_sell, button_settings_sell
 
-bttn_assign_driver_stack = copy.deepcopy(stack_main_button)
-bttn_assign_driver_stack.controls = [bttn_assign_driver, bttn_repeat_assign_driver]
+    def button_add_product_stack(self):
+        button_add_product = ElevatedButtons().button_add_product()
+        self.stack_main_button.controls = [button_add_product,
+                                           IconButtons().button_icon_lock]
+        return self.stack_main_button, button_add_product
 
-bttn_product_sell_stack = copy.deepcopy(stack_main_button)
-bttn_product_sell_stack.controls = [bttn_product_sell, copy.deepcopy(icon_lock)]
+    def button_required_stack(self):
+        button_required = ElevatedButtons().button_required()
+        button_repeat_required = IconButtons().button_icon_repeat_one
+        self.stack_main_button.controls = [button_required,
+                                           button_repeat_required]
+        return self.stack_main_button, button_required, button_repeat_required
 
-bttn_end_order_required_stack = copy.deepcopy(stack_main_button)
-bttn_end_order_required_stack.controls = [bttn_end_order_required, copy.deepcopy(icon_lock)]
+    def button_assign_driver_stack(self):
+        button_assign_driver = ElevatedButtons().button_assign_driver()
+        button_repeat_assign_driver = IconButtons().button_icon_repeat_one
+        self.stack_main_button.controls = [button_assign_driver,
+                                           button_repeat_assign_driver]
+        return self.stack_main_button, button_assign_driver, button_repeat_assign_driver
 
-bttn_end_order_prav_stack = copy.deepcopy(stack_main_button)
-bttn_end_order_prav_stack.controls = [bttn_end_order_prav, copy.deepcopy(icon_lock)]
+    def button_product_sell_stack(self):
+        button_product_sell = ElevatedButtons().button_product_sell()
+        self.stack_main_button.controls = [button_product_sell,
+                                           IconButtons().button_icon_lock]
+        return self.stack_main_button, button_product_sell
 
-bttn_end_order_obes_stack = copy.deepcopy(stack_main_button)
-bttn_end_order_obes_stack.controls = [bttn_end_order_obes, copy.deepcopy(icon_lock)]
+    def driver_in_storage_stack(self):
+        driver_in_storage = ElevatedButtons().driver_in_storage()
+        self.stack_main_button.controls = [driver_in_storage,
+                                           IconButtons().button_icon_lock]
+        return self.stack_main_button, driver_in_storage
 
-bttn_end_order_assign_driver_stack = copy.deepcopy(stack_main_button)
-bttn_end_order_assign_driver_stack.controls = [bttn_end_order_assign_driver, copy.deepcopy(icon_lock)]
+    def button_end_order_assign_driver_stack(self):
+        button_end_order_assign_driver = (
+            ElevatedButtons().button_end_order_assign_driver())
+        self.stack_main_button.controls = [button_end_order_assign_driver,
+                                           IconButtons().button_icon_lock]
+        return self.stack_main_button, button_end_order_assign_driver
 
-bttn_end_sell_stack = copy.deepcopy(stack_main_button)
-bttn_end_sell_stack.controls = [bttn_end_sell, copy.deepcopy(icon_lock)]
-
+    def button_end_sell_stack(self):
+        button_end_sell = ElevatedButtons().button_end_sell()
+        self.stack_main_button.controls = [button_end_sell,
+                                           IconButtons().button_icon_lock]
+        return self.stack_main_button, button_end_sell

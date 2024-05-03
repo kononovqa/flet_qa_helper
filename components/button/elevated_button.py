@@ -1,130 +1,133 @@
-import copy
 import flet as ft
 
-from components.button.styles import button_style_enabled, button_style_disabled
-from components.icon.icon import icon_rotate_right, icon_bttn_update, icon_bttn_push, \
-        icon_go_to_url, icon_copy_order
-from components.text.text import text_in_buttons, create_order_txt, bttn_product_txt, \
-        bttn_approve_txt, bttn_deliver_txt, bttn_end_order_txt, bttn_sell_txt, \
-        bttn_approve_sell_txt, bttn_required_txt, bttn_assign_driver_txt, \
-        bttn_end_order_obes_txt, bttn_end_order_assign_driver_txt, \
-        bttn_product_sell_txt, bttn_end_order_required_txt, bttn_end_order_prav_txt, \
-        bttn_end_sell_txt
-
-# main buttons
-elevated_button_main = ft.ElevatedButton(
-        content=text_in_buttons,
-        width=220, height=75,
-        disabled=True,
-        style=button_style_disabled)
-
-bttn_order = copy.deepcopy(elevated_button_main)
-bttn_order.style = button_style_enabled
-bttn_order.disabled = False
-bttn_order.content = create_order_txt
-
-bttn_product = copy.deepcopy(elevated_button_main)
-bttn_product.content = bttn_product_txt
-
-bttn_approve = copy.deepcopy(elevated_button_main)
-bttn_approve.content = bttn_approve_txt
-
-bttn_deliver = copy.deepcopy(elevated_button_main)
-bttn_deliver.content = bttn_deliver_txt
-
-bttn_end_order = copy.deepcopy(elevated_button_main)
-bttn_end_order.content = bttn_end_order_txt
-
-bttn_product = copy.deepcopy(elevated_button_main)
-bttn_product.content = bttn_product_txt
+from components.button.styles import ButtonStyles
+from components.icon.icon import Icons
+from components.text.text import Texts
 
 
-bttn_sell = copy.deepcopy(elevated_button_main)
-bttn_sell.style = button_style_enabled
-bttn_sell.disabled = False
-bttn_sell.content = bttn_sell_txt
+class ElevatedButtons:
+    def __init__(self):
+        # main big buttons
+        self.elevated_button_main = ft.ElevatedButton(
+            content=Texts().text_in_buttons,
+            width=220,
+            height=75,
+            disabled=True,
+            style=ButtonStyles().button_style_disabled)
 
-bttn_product_sell = copy.deepcopy(elevated_button_main)
-bttn_product_sell.content = bttn_product_sell_txt
+        # square buttons
+        self.elevated_button_square = ft.ElevatedButton(
+            content=Icons().icon_rotate_right,
+            width=75,
+            height=75,
+            style=ButtonStyles().button_style_disabled,
+            disabled=True)
 
-bttn_approve_sell = copy.deepcopy(elevated_button_main)
-bttn_approve_sell.content = bttn_approve_sell_txt
+        # helper buttons
+        self.elevated_button_helpers = ft.ElevatedButton(
+            width=75,
+            height=55,
+            style=ButtonStyles().button_style_enabled,
+            disabled=False,
+            visible=False,
+            offset=(0, -0.03))
 
-bttn_required = copy.deepcopy(elevated_button_main)
-bttn_required.content = bttn_required_txt
+    # tools page
+    def button_delete_order_go(self):
+        self.elevated_button_helpers.content = Icons().icon_delete
+        self.elevated_button_helpers.visible = True
+        return self.elevated_button_helpers
 
-bttn_assign_driver = copy.deepcopy(elevated_button_main)
-bttn_assign_driver.content = bttn_assign_driver_txt
+    def button_delete_order(self):
+        self.elevated_button_main.content = Texts().text_delete_order()
+        self.elevated_button_main.style = ButtonStyles().button_style_enabled
+        self.elevated_button_main.disabled = False
+        return self.elevated_button_main
 
-bttn_end_order_required = copy.deepcopy(elevated_button_main)
-bttn_end_order_required.content = bttn_end_order_required_txt
+    def button_reset_password(self):
+        self.elevated_button_main.content = Texts().text_button_reset_password()
+        self.elevated_button_main.style = ButtonStyles().button_style_enabled
+        self.elevated_button_main.disabled = False
+        return self.elevated_button_main
 
-bttn_end_order_prav = copy.deepcopy(elevated_button_main)
-bttn_end_order_prav.content = bttn_end_order_prav_txt
+    def button_order(self):
+        self.elevated_button_main.style = ButtonStyles().button_style_enabled
+        self.elevated_button_main.disabled = False
+        self.elevated_button_main.content = Texts().create_order_txt()
+        return self.elevated_button_main
 
-bttn_end_order_obes = copy.deepcopy(elevated_button_main)
-bttn_end_order_obes.content = bttn_end_order_obes_txt
+    def button_product(self):
+        self.elevated_button_main.content = Texts().button_product_txt()
+        return self.elevated_button_main
 
-bttn_end_order_assign_driver = copy.deepcopy(elevated_button_main)
-bttn_end_order_assign_driver.content = bttn_end_order_assign_driver_txt
+    def button_approve(self):
+        self.elevated_button_main.content = Texts().button_approve_txt()
+        return self.elevated_button_main
 
-bttn_end_sell = copy.deepcopy(elevated_button_main)
-bttn_end_sell.content = bttn_end_sell_txt
+    def button_deliver(self):
+        self.elevated_button_main.content = Texts().button_deliver_txt()
+        return self.elevated_button_main
 
+    def button_end_order(self):
+        self.elevated_button_main.content = Texts().button_end_order_txt()
+        return self.elevated_button_main
 
-# update and push buttons
-elevated_button_square = ft.ElevatedButton(
-        content=icon_rotate_right,
-        width=75, height=75, style=button_style_disabled, disabled=True)
+    def button_sell(self):
+        self.elevated_button_main.style = ButtonStyles().button_style_enabled
+        self.elevated_button_main.disabled = False
+        self.elevated_button_main.content = Texts().button_sell_txt()
+        return self.elevated_button_main
 
-bttn_update = copy.deepcopy(elevated_button_square)
-bttn_update.content = icon_bttn_update
+    def button_product_sell(self):
+        self.elevated_button_main.content = Texts().button_product_sell_txt()
+        return self.elevated_button_main
 
-bttn_push = copy.deepcopy(elevated_button_square)
-bttn_push.style = button_style_enabled
-bttn_push.disabled = False
-bttn_push.content = icon_bttn_push
+    def button_add_product(self):
+        self.elevated_button_main.content = Texts().button_add_product_txt()
+        return self.elevated_button_main
 
+    def button_required(self):
+        self.elevated_button_main.content = Texts().button_required_txt()
+        return self.elevated_button_main
 
-bttn_update_sell = copy.deepcopy(elevated_button_square)
-bttn_update_sell.content = icon_bttn_update
+    def button_assign_driver(self):
+        self.elevated_button_main.content = Texts().button_assign_driver_txt()
+        return self.elevated_button_main
 
-bttn_push_sell = copy.deepcopy(elevated_button_square)
-bttn_push_sell.style = button_style_enabled
-bttn_push_sell.disabled = False
-bttn_push_sell.content = icon_bttn_push
+    def driver_in_storage(self):
+        self.elevated_button_main.content = Texts().driver_in_storage_txt()
+        return self.elevated_button_main
 
+    def button_deliver_sell(self):
+        self.elevated_button_main.content = Texts().button_deliver_sell_txt()
+        return self.elevated_button_main
 
-# go to url and copy buttons
-elevated_button_go_url_and_copy = ft.ElevatedButton(
-        width=75, height=55, style=button_style_enabled, disabled=False, visible=False,
-        offset=(0, -0.03))
+    def button_delivered_sell(self):
+        self.elevated_button_main.content = Texts().button_delivered_sell_txt()
+        return self.elevated_button_main
 
-bttn_go_order = copy.deepcopy(elevated_button_go_url_and_copy)
-bttn_go_order.content = icon_go_to_url
+    def button_end_order_assign_driver(self):
+        self.elevated_button_main.content = Texts().button_end_order_assign_driver_txt()
+        return self.elevated_button_main
 
-bttn_go_sell = copy.deepcopy(elevated_button_go_url_and_copy)
-bttn_go_sell.content = icon_go_to_url
+    def button_end_sell(self):
+        self.elevated_button_main.content = Texts().button_end_sell_txt()
+        return self.elevated_button_main
 
-bttn_copy_str_order = copy.deepcopy(elevated_button_go_url_and_copy)
-bttn_copy_str_order.content = icon_copy_order
+    def button_update(self):
+        self.elevated_button_square.content = Icons().icon_rotate_right
+        return self.elevated_button_square
 
-bttn_copy_str_sell = copy.deepcopy(elevated_button_go_url_and_copy)
-bttn_copy_str_sell.content = icon_copy_order
+    def button_push(self):
+        self.elevated_button_square.style = ButtonStyles().button_style_enabled
+        self.elevated_button_square.disabled = False
+        self.elevated_button_square.content = Icons().icon_push
+        return self.elevated_button_square
 
+    def button_go_to_link(self):
+        self.elevated_button_helpers.content = Icons().icon_send
+        return self.elevated_button_helpers
 
-# tools page
-bttn_delete_order_go = ft.ElevatedButton(
-        content=ft.Icon(name=ft.icons.DELETE),
-        width=75, height=55, style=button_style_enabled, disabled=False,
-        offset=(0, -0.03))
-
-bttn_delete_order = ft.ElevatedButton(
-        content=ft.Text(value="Удалить заказ",
-                        text_align=ft.TextAlign.CENTER),
-        width=220, height=75, style=button_style_enabled, disabled=False)
-
-bttn_reset_password = ft.ElevatedButton(
-        content=ft.Text(value="Сбросить всем пользователям пароли",
-                        text_align=ft.TextAlign.CENTER),
-        width=220, height=75, style=button_style_enabled, disabled=False)
+    def button_copy(self):
+        self.elevated_button_helpers.content = Icons().icon_copy
+        return self.elevated_button_helpers

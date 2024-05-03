@@ -2,50 +2,58 @@ import traceback
 import asyncio
 import flet as ft
 
-from components.button.elevated_button import bttn_delete_order, bttn_reset_password
-from components.button.styles import button_style_pressed_wait, \
-    button_style_pressed_access, button_style_failed_disabled, button_style_enabled
-from components.container.container import container_choice_tool
-from components.text.text import txt_progress_reset_password
+from components.button.elevated_button import ElevatedButtons
+from components.button.styles import ButtonStyles
+from components.container.container import Containers
+from components.text.text import Texts
+
 from press_button.fake_do_something import do_something
 
 
 def tools_page(page):
+
+    button_reset_password = ElevatedButtons().button_reset_password()
+    txt_progress_reset_password = Texts().text_button_reset_password()
+    button_delete_order = ElevatedButtons().button_delete_order()
+    container_choice_tool = Containers().container_choice_tool
+
     async def go_delete_order(e):
         await page.go_async('/tools/delete_order')
 
     async def go_default_password(e):
-        bttn_reset_password.style = button_style_pressed_wait
-        bttn_reset_password.disabled = True
+        button_reset_password.style = (
+            ButtonStyles().button_style_pressed_wait)
+        button_reset_password.disabled = True
         await page.update_async()
 
         try:
             for user in range(0, 10):
                 await do_something()
                 txt_progress_reset_password.value = f'Сброшен пользователь {user}_name'
+                txt_progress_reset_password.visible = True
                 await page.update_async()
         except:
             print(f'Ошибка : \n {traceback.format_exc()}')
-            bttn_reset_password.style = button_style_failed_disabled
-            bttn_reset_password.disabled = False
+            button_reset_password.style = ButtonStyles().button_style_failed_disabled
+            button_reset_password.disabled = False
             await page.update_async()
         else:
-            bttn_reset_password.style = button_style_pressed_access
-            bttn_reset_password.disabled = False
+            button_reset_password.style = ButtonStyles().button_style_pressed_access
+            button_reset_password.disabled = False
             await page.update_async()
         finally:
             await asyncio.sleep(5)
-            bttn_reset_password.style = button_style_enabled
-            bttn_reset_password.disabled = False
+            button_reset_password.style = ButtonStyles().button_style_enabled
+            button_reset_password.disabled = False
             txt_progress_reset_password.value = ''
             await page.update_async()
 
-    bttn_delete_order.on_click = go_delete_order
-    bttn_reset_password.on_click = go_default_password
+    button_delete_order.on_click = go_delete_order
+    button_reset_password.on_click = go_default_password
 
     content = ft.Column([
         container_choice_tool,
-        ft.Row([bttn_delete_order, bttn_reset_password],
+        ft.Row([button_delete_order, button_reset_password],
                alignment=ft.MainAxisAlignment.CENTER,
                vertical_alignment=ft.CrossAxisAlignment.CENTER,
                offset=(0, -0.17)),

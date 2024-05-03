@@ -6,17 +6,29 @@ import flet as ft
 
 from pathlib import Path
 
-from components.chart_axis_label.chart_axis_label import example_horizontal_data
-from components.container.container import example_container
-from components.line_chart.line_chart import example_linechart
-from components.line_chart_data.line_chart_data import example_data_points
-from components.line_chart_data.line_chart_data_point import example_linechart_data_point
-from components.row.row import example_raw_with_linechart, example_raw_between_linecharts
-from components.text.text import name_service, example_horizontal_text
-from components.text_span.text_span import example_textspan
+from components.chart_axis_label.chart_axis_label import ChartsAxisLabels
+from components.container.container import Containers
+from components.line_chart.line_chart import LineCharts
+from components.line_chart.line_chart_data import LineChartDatas
+from components.line_chart.line_chart_data_point import LineChartDataPoints
+from components.row.row import Rows
+from components.text.text import Texts
+from components.text.text_span import TextSpans
 
 
 def autotests_page(page):
+
+    example_horizontal_data = ChartsAxisLabels().example_horizontal_data
+    example_container = Containers().example_container
+    example_linechart = LineCharts().example_linechart
+    example_data_points = LineChartDatas().example_data_points
+    example_linechart_data_point = LineChartDataPoints().example_linechart_data_point
+    example_raw_with_linechart = Rows().example_raw_with_linechart
+    example_raw_between_linecharts = Rows().example_raw_between_linecharts
+    name_service = Texts().name_service
+    example_horizontal_text = Texts().example_horizontal_text
+    example_textspan = TextSpans().example_textspan
+
     page.scroll = 'AUTO'
     list_linecharts = []
 
