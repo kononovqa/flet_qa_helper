@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.openapi.utils import get_openapi
 from fastapi_client.data import DESCRIPTION_SWAGGER, TAGS_METADATA
-from press_button.fake_do_something import do_something
+from autotest_requests.fake_do_something import do_something
 
 
 def custom_openapi():
@@ -60,15 +60,15 @@ async def delete_user(user_login: str):
 @api.post('/autotests/send_data', tags=['Autotests'],
           name='Отправить данные по автотестам на график')
 def get_result_autotests(service_name: str, date: str, total_tests: int,
-                         test_failed: int, teamcity_build_id: int,
+                         test_failed: int, autotests_build_id: int,
                          service_path: str = ''):
     json_data = {'service_name': service_name,
                  'date': date,
                  'total_tests': total_tests,
                  'test_failed': test_failed,
-                 'teamcity_build_id': teamcity_build_id,
+                 'autotests_build_id': autotests_build_id,
                  'service_path': service_path}
     with open(f'allure_json_results/{service_name} '
-              f'{teamcity_build_id}.json', "w") as json_file:
+              f'{autotests_build_id}.json', "w") as json_file:
         json.dump(json_data, json_file, ensure_ascii=False)
     return json_data

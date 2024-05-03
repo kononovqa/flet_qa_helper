@@ -11,7 +11,7 @@ from components.text.text import Texts
 from components.text.text_field import TextFields
 from components.progress_bar.progress_bar import ProgressBars
 
-from press_button.fake_do_something import do_something, do_something_failed
+from autotest_requests.fake_do_something import do_something, do_something_failed
 from data.variables import cst_head_list, list_users_sell
 
 
@@ -662,13 +662,13 @@ def main_page(page):
             await change_progress_bar(progress_bar_sell, 0.6)
 
             await switch_txt_progress_bar(txt_progress_bar_order_sell,
-                                          'Сортируем по доступным для выбора',
+                                          'Выбираем водителя',
                                           page)
             await do_something()
             await change_progress_bar(progress_bar_sell, 0.75)
 
             await switch_txt_progress_bar(txt_progress_bar_order_sell,
-                                          'Выбираем водителя',
+                                          'Завершено',
                                           page)
             await do_something()
             await change_progress_bar(progress_bar_sell, 1)
@@ -760,6 +760,8 @@ def main_page(page):
         await page.set_clipboard_async(banner_text.value)
 
     async def dialog_exit(e):
+        dialog_order.open = False
+        dialog_sell.open = False
         if button_settings.disabled and button_settings.icon_color != 'green':
             button_settings.disabled = False
             button_settings.icon_color = ft.colors.CYAN

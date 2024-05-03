@@ -4,6 +4,7 @@ import uvicorn
 import flet_fastapi
 import flet as ft
 
+from components.button.elevated_button import ElevatedButtons
 from router import Router
 
 from fastapi.openapi.utils import get_openapi
@@ -42,6 +43,9 @@ async def main(page: ft.Page):
     async def go_stands(e):
         await page.go_async('/stands')
 
+    async def go_api(e):
+        await page.launch_url_async('/api/docs')
+
     button_create = ft.TextButton(
         content=Texts().txt_header_main(),
         on_click=go_start)
@@ -62,10 +66,15 @@ async def main(page: ft.Page):
         content=Texts().txt_header_stands(),
         on_click=go_stands)
 
+    button_api = ft.TextButton(
+        content=Texts().txt_api_button(),
+        on_click=go_api)
+
     row_header = ft.Row(
         [button_create, ProgressBars().vertical_divider, button_helper,
          ProgressBars().vertical_divider, button_autotests,
          ProgressBars().vertical_divider, button_stands,
+         ProgressBars().vertical_divider, button_api,
          ProgressBars().vertical_divider, button_info],
         alignment=ft.MainAxisAlignment.CENTER,
         offset=(0, 0.4))
@@ -82,11 +91,14 @@ async def main(page: ft.Page):
         width_page = int(page.width)
         if width_page < 1309:
             horizontal_divider_header.width = width_page - 40
-        if width_page < 720:
+        else:
+            horizontal_divider_header.width = 1309
+
+        if width_page < 790:
             row_header.scroll = ft.ScrollMode.ADAPTIVE
         else:
             row_header.scroll = False
-            horizontal_divider_header.width = 1309
+
     resize()
 
     async def page_resize(e):

@@ -6,7 +6,7 @@ from components.button.styles import ButtonStyles
 from components.container.container import Containers
 from components.text.text_field import TextFields
 
-from press_button.fake_do_something import do_something
+from autotest_requests.fake_do_something import do_something
 
 
 def delete_order_page(page):

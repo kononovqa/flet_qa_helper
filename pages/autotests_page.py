@@ -53,9 +53,9 @@ def autotests_page(page):
         build_id = []
 
         for key in jsons_data.keys():
-            service_name_to_check, teamcity_build_id = key.split(' ')
+            service_name_to_check, autotests_build_id = key.split(' ')
             if service_name_to_check == service_name:
-                build_id.append(teamcity_build_id)
+                build_id.append(autotests_build_id)
 
         build_id.sort()
         list_data_points_green = []

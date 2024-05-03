@@ -45,7 +45,7 @@ class Texts:
 
         # info page
         self.container_app_version = ft.Text(
-            value='Версия приложения: 1.2.0 \n',
+            value='Версия приложения: 1.2.1 \n',
             font_family='Arial',
             size=20,
             color=ft.colors.WHITE)
@@ -102,6 +102,10 @@ class Texts:
 
     def txt_header_stands(self):
         self.txt_main_text.value = 'Стенды'
+        return self.txt_main_text
+
+    def txt_api_button(self):
+        self.txt_main_text.value = 'API'
         return self.txt_main_text
 
     def txt_main_text_sell(self):

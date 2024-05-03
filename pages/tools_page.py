@@ -7,7 +7,7 @@ from components.button.styles import ButtonStyles
 from components.container.container import Containers
 from components.text.text import Texts
 
-from press_button.fake_do_something import do_something
+from autotest_requests.fake_do_something import do_something
 
 
 def tools_page(page):
