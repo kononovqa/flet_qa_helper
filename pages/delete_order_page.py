@@ -41,6 +41,21 @@ def delete_order_page(page):
     txt_delete_order.on_change = go_white
     button_delete_order_go.on_click = delete_order
 
+    def resize():
+        width_page = int(page.width)
+        if width_page < 701:
+            txt_delete_order_width = (width_page - 75 - 26)
+        else:
+            txt_delete_order_width = 600
+        txt_delete_order.width = txt_delete_order_width
+    resize()
+
+    async def page_resize(e):
+        resize()
+        await page.update_async()
+
+    page.on_resize = page_resize
+
     content = ft.Column([
         container_delete_order,
         ft.Row([txt_delete_order, button_delete_order_go],

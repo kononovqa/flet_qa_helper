@@ -29,7 +29,7 @@ def autotests_page(page):
     example_horizontal_text = Texts().example_horizontal_text
     example_textspan = TextSpans().example_textspan
 
-    page.scroll = 'AUTO'
+    page.auto_scroll = ft.ScrollMode.HIDDEN
     list_linecharts = []
 
     path = Path(Path(__file__).parent.parent)
@@ -219,6 +219,22 @@ def autotests_page(page):
         new_example_raw_with_linechart.controls = [new_example_list_chart]
         list_linecharts.append(new_example_raw_with_linechart)
         list_linecharts.append(example_raw_between_linecharts)
+
+    def resize():
+        width_page = int(page.width)
+        if width_page < 1330:
+            width_linechart = width_page - 40
+        else:
+            width_linechart = 1309
+        for linechart in list_linecharts:
+            linechart.width = width_linechart
+    resize()
+
+    async def page_resize(e):
+        resize()
+        await page.update_async()
+
+    page.on_resize = page_resize
 
     content = ft.Column(list_linecharts)
 

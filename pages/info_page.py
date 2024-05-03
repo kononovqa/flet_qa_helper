@@ -11,6 +11,7 @@ def info_page(page):
     txt_tg = Texts().txt_tg
     txt_yt = Texts().txt_yt
     container_app_version = Texts().container_app_version
+    container_creator_fio = Texts().txt_creator_fio
 
     async def press_tg(e):
         await page.launch_url_async('https://t.me/KononovQA')
@@ -24,8 +25,10 @@ def info_page(page):
     content = ft.Column([
         ft.Row([container_app_version], offset=(0, 0.3),
                alignment=ft.MainAxisAlignment.START),
-        ft.Row([icon_tg, txt_tg], alignment=ft.MainAxisAlignment.START),
-        ft.Row([icon_yt, txt_yt], alignment=ft.MainAxisAlignment.START)
-    ], width=1309, alignment=ft.MainAxisAlignment.CENTER)
+        ft.Row([container_creator_fio],
+               alignment=ft.MainAxisAlignment.START),
+        ft.Row([icon_tg, txt_tg], alignment=ft.MainAxisAlignment.START, offset=(0, -0.5)),
+        ft.Row([icon_yt, txt_yt], alignment=ft.MainAxisAlignment.START, offset=(0, -0.5))
+    ], width=1300, alignment=ft.MainAxisAlignment.CENTER)
 
     return content

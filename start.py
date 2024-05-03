@@ -62,21 +62,43 @@ async def main(page: ft.Page):
         content=Texts().txt_header_stands(),
         on_click=go_stands)
 
-    page.appbar = ft.AppBar(
-        title=ft.Column([
-            ft.Row(
-                [button_create, ProgressBars().vertical_divider, button_helper,
-                 ProgressBars().vertical_divider, button_autotests,
-                 ProgressBars().vertical_divider, button_stands,
-                 ProgressBars().vertical_divider, button_info],
-                alignment=ft.MainAxisAlignment.CENTER,
-                offset=(0, 0.4)),
-            ft.Row(
-                [Containers().horizontal_divider],
+    row_header = ft.Row(
+        [button_create, ProgressBars().vertical_divider, button_helper,
+         ProgressBars().vertical_divider, button_autotests,
+         ProgressBars().vertical_divider, button_stands,
+         ProgressBars().vertical_divider, button_info],
+        alignment=ft.MainAxisAlignment.CENTER,
+        offset=(0, 0.4))
+
+    horizontal_divider_header = Containers().horizontal_divider
+    row_vertical_divider_header = ft.Row(
+                [horizontal_divider_header],
                 height=16,
                 alignment=ft.MainAxisAlignment.CENTER,
                 vertical_alignment=ft.alignment.bottom_center,
                 offset=(0, 1))
+
+    def resize():
+        width_page = int(page.width)
+        if width_page < 1309:
+            horizontal_divider_header.width = width_page - 40
+        if width_page < 720:
+            row_header.scroll = ft.ScrollMode.ADAPTIVE
+        else:
+            row_header.scroll = False
+            horizontal_divider_header.width = 1309
+    resize()
+
+    async def page_resize(e):
+        resize()
+        await page.update_async()
+
+    page.on_resize = page_resize
+
+    page.appbar = ft.AppBar(
+        title=ft.Column([
+            row_header,
+            row_vertical_divider_header
         ]),
         toolbar_height=75)
 
@@ -97,7 +119,6 @@ def custom_openapi():
 
 app = flet_fastapi.FastAPI()
 app.openapi = custom_openapi
-
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 app.mount("/api", app=api)

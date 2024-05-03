@@ -27,173 +27,206 @@ def stands_page(page):
         ft.DataColumn(stands_7),
         ft.DataColumn(stands_8)
     ],
-     rows=[
-         ft.DataRow(
-             cells=[
-                 ft.DataCell(
-                     ft.Text("SERVICE 1", size=15, weight=ft.FontWeight.BOLD,
-                             width=100,
-                             text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 1 STAND 1",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 1 STAND 2",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 1 STAND 3",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 1 STAND 4",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 1 STAND 5",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 1 STAND 6",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text('---', width=89, text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text('---', width=89, text_align=ft.TextAlign.CENTER))
-             ],
-         ),
-         ft.DataRow(
-             cells=[
-                 ft.DataCell(ft.Text("SERVICE 2", size=15, weight=ft.FontWeight.BOLD,
-                                     width=100,
-                                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 2 STAND 1",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text('---', width=89,
-                                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 2 STAND 3",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 2 STAND 4",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 2 STAND 5",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 2 STAND 6",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text('---', width=89,
-                                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text('---', width=89,
-                                     text_align=ft.TextAlign.CENTER))
-             ],
-         ),
-         ft.DataRow(
-             cells=[
-                 ft.DataCell(ft.Text("SERVICE 3", size=15,
-                                     weight=ft.FontWeight.BOLD, width=100,
-                                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 3 STAND 1",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 3 STAND 2",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 3 STAND 3",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 3 STAND 4",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 3 STAND 5",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 3 STAND 6",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 3 STAND 7",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 3 STAND 8",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER))
-             ],
-         ),
-         ft.DataRow(
-             cells=[
-                 ft.DataCell(
-                     ft.Text("SERVICE 4", size=15, weight=ft.FontWeight.BOLD, width=100,
-                             text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 4 STAND 1",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 4 STAND 2",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 4 STAND 3",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 4 STAND 4",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 4 STAND 5",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text(spans=[ft.TextSpan(
-                     "SERVICE 4 STAND 6",
-                     url='https://www.google.ru/',
-                     style=ft.TextStyle(color=ft.colors.CYAN))], width=89,
-                     text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text('---', width=89, text_align=ft.TextAlign.CENTER)),
-                 ft.DataCell(ft.Text('---', width=89, text_align=ft.TextAlign.CENTER))
-             ],
-         ),
-     ]
-     )
+                             rows=[
+                                 ft.DataRow(
+                                     cells=[
+                                         ft.DataCell(
+                                             ft.Text("SERVICE 1", size=15,
+                                                     weight=ft.FontWeight.BOLD,
+                                                     width=100,
+                                                     text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 1 STAND 1",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 1 STAND 2",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 1 STAND 3",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 1 STAND 4",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 1 STAND 5",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 1 STAND 6",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text('---', width=89,
+                                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text('---', width=89,
+                                                             text_align=ft.TextAlign.CENTER))
+                                     ],
+                                 ),
+                                 ft.DataRow(
+                                     cells=[
+                                         ft.DataCell(ft.Text("SERVICE 2", size=15,
+                                                             weight=ft.FontWeight.BOLD,
+                                                             width=100,
+                                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 2 STAND 1",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text('---', width=89,
+                                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 2 STAND 3",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 2 STAND 4",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 2 STAND 5",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 2 STAND 6",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text('---', width=89,
+                                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text('---', width=89,
+                                                             text_align=ft.TextAlign.CENTER))
+                                     ],
+                                 ),
+                                 ft.DataRow(
+                                     cells=[
+                                         ft.DataCell(ft.Text("SERVICE 3", size=15,
+                                                             weight=ft.FontWeight.BOLD,
+                                                             width=100,
+                                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 3 STAND 1",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 3 STAND 2",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 3 STAND 3",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 3 STAND 4",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 3 STAND 5",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 3 STAND 6",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 3 STAND 7",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 3 STAND 8",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER))
+                                     ],
+                                 ),
+                                 ft.DataRow(
+                                     cells=[
+                                         ft.DataCell(
+                                             ft.Text("SERVICE 4", size=15,
+                                                     weight=ft.FontWeight.BOLD, width=100,
+                                                     text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 4 STAND 1",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 4 STAND 2",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 4 STAND 3",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 4 STAND 4",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 4 STAND 5",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text(spans=[ft.TextSpan(
+                                             "SERVICE 4 STAND 6",
+                                             url='https://www.google.ru/',
+                                             style=ft.TextStyle(color=ft.colors.CYAN))],
+                                             width=89,
+                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text('---', width=89,
+                                                             text_align=ft.TextAlign.CENTER)),
+                                         ft.DataCell(ft.Text('---', width=89,
+                                                             text_align=ft.TextAlign.CENTER))
+                                     ],
+                                 ),
+                             ]
+                             )
 
     datatable_services = ft.DataTable(width=1309, data_row_max_height=70, columns=[
         ft.DataColumn(stands_header),
@@ -429,22 +462,36 @@ def stands_page(page):
             ],
         ),
     ])
+    row_datatable = ft.Row([datatable],
+                           alignment=ft.MainAxisAlignment.CENTER,
+                           vertical_alignment=ft.CrossAxisAlignment.CENTER)
 
-    content = ft.Column([ft.Row([
-        datatable
-    ],
-        alignment=ft.MainAxisAlignment.CENTER,
-        vertical_alignment=ft.CrossAxisAlignment.CENTER,
-    ),
-        ft.Row([],
-               width=1309,
-               height=80
-               ),
-        ft.Row([
-            datatable_services
-        ],
-            alignment=ft.MainAxisAlignment.CENTER,
-            vertical_alignment=ft.CrossAxisAlignment.CENTER,
-        )])
+    row_datatable_services = ft.Row([datatable_services],
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER)
+
+    def resize():
+        width_page = int(page.width)
+        if width_page < 1330:
+            row_datatable.scroll = ft.ScrollMode.ADAPTIVE
+            row_datatable_services.scroll = ft.ScrollMode.ADAPTIVE
+        else:
+            row_datatable.scroll = False
+            row_datatable_services.scroll = False
+    resize()
+
+    async def page_resize(e):
+        resize()
+        await page.update_async()
+
+    page.on_resize = page_resize
+
+    content = ft.Column([row_datatable,
+                         ft.Row([],
+                                width=1309,
+                                height=80
+                                ),
+                         row_datatable_services
+                         ])
 
     return content

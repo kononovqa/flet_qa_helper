@@ -45,7 +45,13 @@ class Texts:
 
         # info page
         self.container_app_version = ft.Text(
-            value='Версия приложения: 1.1.0 \n',
+            value='Версия приложения: 1.2.0 \n',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE)
+
+        self.txt_creator_fio = ft.Text(
+            value='Кононов Михаил Дмитриевич \n',
             font_family='Arial',
             size=20,
             color=ft.colors.WHITE)
@@ -111,7 +117,7 @@ class Texts:
         return self.text_in_buttons
 
     def button_product_txt(self):
-        self.text_in_buttons.value = 'Выбрать случайного поставщика и товар'
+        self.text_in_buttons.value = 'Выбрать поставщика и товар'
         return self.text_in_buttons
 
     def button_approve_txt(self):
@@ -159,7 +165,7 @@ class Texts:
         return self.text_in_buttons
 
     def button_end_order_assign_driver_txt(self):
-        self.text_in_buttons.value = 'Заполнить закрывающие документы'
+        self.text_in_buttons.value = 'Заполнить документы'
         return self.text_in_buttons
 
     def button_end_sell_txt(self):

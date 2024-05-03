@@ -7,7 +7,6 @@ from components.button.elevated_button import ElevatedButtons
 from components.button.icon_button import IconButtons
 from components.button.styles import ButtonStyles
 from components.container.container import Containers
-from components.dropdown.dropdown import Dropdowns
 from components.text.text import Texts
 from components.text.text_field import TextFields
 from components.progress_bar.progress_bar import ProgressBars
@@ -17,7 +16,6 @@ from data.variables import cst_head_list, list_users_sell
 
 
 def main_page(page):
-
     button_order_container, button_order, button_settings = (
         Containers().button_order_container())
     button_product_container, button_product, button_repeat_product = (
@@ -84,6 +82,148 @@ def main_page(page):
     progress_bar_order = ProgressBars().progress_bar
     progress_bar_sell = ProgressBars().progress_bar
 
+    row_order = ft.Row([button_order_container,
+                        button_product_container,
+                        button_approve_container,
+                        button_deliver_container,
+                        button_end_order_container,
+                        button_update,
+                        button_push],
+                       alignment=ft.MainAxisAlignment.CENTER,
+                       vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                       offset=(0, -0.17))
+
+    row_txt_progress_bar_order = ft.Row([txt_progress_bar_order],
+                                        alignment=ft.MainAxisAlignment.CENTER,
+                                        vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                        offset=(0, -0.5))
+
+    row_progress_bar_order = ft.Row([progress_bar_order],
+                                    alignment=ft.MainAxisAlignment.CENTER,
+                                    vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                    offset=(0, -0.6))
+
+    row_go_order = ft.Row([txt_go_order, button_go_order],
+                          alignment=ft.MainAxisAlignment.CENTER,
+                          vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                          height=65,
+                          visible=False)
+
+    row_creator_order = ft.Row([txt_creator_order, button_copy_str_order],
+                               alignment=ft.MainAxisAlignment.CENTER,
+                               vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                               height=65,
+                               visible=False)
+
+    row_sell_first = ft.Row([button_sell_container,
+                             button_in_work_sell_container,
+                             button_add_product_container,
+                             button_required_container,
+                             button_assign_driver_container,
+                             button_empty,
+                             button_empty_2],
+                            alignment=ft.MainAxisAlignment.CENTER,
+                            vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                            offset=(0, -0.25))
+
+    row_sell_second = ft.Row([button_driver_in_storage_container,
+                              button_deliver_sell_container,
+                              button_delivered_sell_container,
+                              button_sign_docs_container,
+                              button_end_sell_container,
+                              button_update_sell,
+                              button_push_sell],
+                             alignment=ft.MainAxisAlignment.CENTER,
+                             vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                             offset=(0, -0.25))
+
+    row_txt_progress_bar_sell = ft.Row([txt_progress_bar_order_sell],
+                                       alignment=ft.MainAxisAlignment.CENTER,
+                                       vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                       offset=(0, -0.5))
+
+    row_progress_bar_sell = ft.Row([progress_bar_sell],
+                                   alignment=ft.MainAxisAlignment.CENTER,
+                                   vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                                   offset=(0, -0.6))
+
+    row_go_sell = ft.Row([txt_go_sell, button_go_sell],
+                         alignment=ft.MainAxisAlignment.CENTER,
+                         vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                         height=65,
+                         visible=False)
+
+    row_sell_str = ft.Row([txt_sell_str, button_copy_str_sell],
+                          alignment=ft.MainAxisAlignment.CENTER,
+                          vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                          height=65,
+                          visible=False)
+
+    def resize():
+        width_page = int(page.width)
+        if width_page < 1330:
+            row_order.scroll = ft.ScrollMode.ADAPTIVE
+            row_go_order.scroll = ft.ScrollMode.ADAPTIVE
+            txt_go_order.width = width_page - 110
+            row_creator_order.scroll = ft.ScrollMode.ADAPTIVE
+            txt_creator_order.width = width_page - 110
+            row_sell_first.scroll = ft.ScrollMode.ADAPTIVE
+            row_sell_second.scroll = ft.ScrollMode.ADAPTIVE
+            row_go_sell.scroll = ft.ScrollMode.ADAPTIVE
+            txt_go_sell.width = width_page - 110
+            row_sell_str.scroll = ft.ScrollMode.ADAPTIVE
+            txt_sell_str.width = width_page - 110
+            progress_bar_order.width = width_page - 30
+            progress_bar_sell.width = width_page - 30
+
+        else:
+            row_order.scroll = False
+            row_go_order.scroll = False
+            txt_go_order.width = 1230
+            row_creator_order.scroll = False
+            txt_creator_order.width = 1230
+            row_sell_first.scroll = False
+            row_sell_second.scroll = False
+            row_go_sell.scroll = False
+            txt_go_sell.width = 1230
+            row_sell_str.scroll = False
+            txt_sell_str.width = 1230
+            progress_bar_order.width = 1310
+            progress_bar_sell.width = 1310
+
+        if width_page < 930:
+            width_button = 140
+        elif 930 < width_page <= 1330:
+            width_button = (width_page - 172 - 57) / 5
+        else:
+            width_button = 220
+
+        button_order_container.width = width_button
+        button_product_container.width = width_button
+        button_approve_container.width = width_button
+        button_deliver_container.width = width_button
+        button_end_order_container.width = width_button
+
+        button_sell_container.width = width_button
+        button_in_work_sell_container.width = width_button
+        button_add_product_container.width = width_button
+        button_required_container.width = width_button
+        button_assign_driver_container.width = width_button
+
+        button_driver_in_storage_container.width = width_button
+        button_deliver_sell_container.width = width_button
+        button_delivered_sell_container.width = width_button
+        button_sign_docs_container.width = width_button
+        button_end_sell_container.width = width_button
+
+    resize()
+
+    async def page_resize(e):
+        resize()
+        await page.update_async()
+
+    page.on_resize = page_resize
+
     async def button_pressed(button_main, button_side, progress_bar,
                              progress_bar_text_field, text_above_pb, page):
         button_main.disabled = True
@@ -149,6 +289,8 @@ def main_page(page):
             url_project_order = f'https://www.google.ru/search?q={user_for_create}'
             txt_go_order.value = url_project_order
             txt_go_order.visible = True
+            row_go_order.visible = True
+            row_creator_order.visible = True
             button_go_order.visible = True
             txt_creator_order.value = user_for_create
             txt_creator_order.visible = True
@@ -250,7 +392,8 @@ def main_page(page):
         await button_success(button_deliver, button_repeat_deliver, page)
 
     async def press_end_order(e):
-        await button_pressed(button_end_order, button_repeat_end_order, progress_bar_order,
+        await button_pressed(button_end_order, button_repeat_end_order,
+                             progress_bar_order,
                              txt_progress_bar_order, 'Запускаем процесс', page)
         await page.update_async()
 
@@ -303,6 +446,8 @@ def main_page(page):
 
         txt_go_order.visible = False
         button_go_order.visible = False
+        row_go_order.visible = False
+        row_creator_order.visible = False
 
         txt_creator_order.visible = False
         button_copy_str_order.visible = False
@@ -349,6 +494,8 @@ def main_page(page):
 
         txt_go_sell.visible = False
         button_go_sell.visible = False
+        row_go_sell.visible = True
+        row_sell_str.visible = True
 
         txt_sell_str.visible = False
         button_copy_str_sell.visible = False
@@ -396,6 +543,8 @@ def main_page(page):
             txt_go_sell.value = url_sell
             txt_go_sell.visible = True
             button_go_sell.visible = True
+            row_go_sell.visible = True
+            row_sell_str.visible = True
             txt_sell_str.value = user_for_create
             txt_sell_str.visible = True
             button_copy_str_sell.visible = True
@@ -490,7 +639,8 @@ def main_page(page):
 
         except:
             await open_banner_with_error(traceback.format_exc())
-            await button_failed(button_required, button_repeat_required, progress_bar_sell,
+            await button_failed(button_required, button_repeat_required,
+                                progress_bar_sell,
                                 button_update_sell, page)
             return 0
 
@@ -529,7 +679,8 @@ def main_page(page):
                                 progress_bar_sell, button_update_sell, page)
             return 0
 
-        await button_success(button_assign_driver, button_repeat_assign_driver, page, True)
+        await button_success(button_assign_driver, button_repeat_assign_driver, page,
+                             True)
 
     async def press_go_order(e):
         await page.launch_url_async(txt_go_order.value)
@@ -609,10 +760,10 @@ def main_page(page):
         await page.set_clipboard_async(banner_text.value)
 
     async def dialog_exit(e):
-        if button_settings.disabled:
+        if button_settings.disabled and button_settings.icon_color != 'green':
             button_settings.disabled = False
             button_settings.icon_color = ft.colors.CYAN
-        elif button_settings_sell.disabled:
+        elif button_settings_sell.disabled and button_settings_sell.icon_color != 'green':
             button_settings_sell.disabled = False
             button_settings_sell.icon_color = ft.colors.CYAN
         await page.update_async()
@@ -667,65 +818,18 @@ def main_page(page):
 
     content = ft.Column([
         container_txt_start_order,
-        ft.Row([button_order_container,
-                button_product_container,
-                button_approve_container,
-                button_deliver_container,
-                button_end_order_container,
-                button_update,
-                button_push],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER,
-               offset=(0, -0.17)),
-        ft.Row([txt_progress_bar_order],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER,
-               offset=(0, -0.5)),
-        ft.Row([progress_bar_order],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER,
-               offset=(0, -0.6)),
-        ft.Row([txt_go_order, button_go_order],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER),
-        ft.Row([txt_creator_order, button_copy_str_order],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER),
+        row_order,
+        row_txt_progress_bar_order,
+        row_progress_bar_order,
+        row_go_order,
+        row_creator_order,
         container_txt_start_sell,
-        ft.Row([button_sell_container,
-                button_in_work_sell_container,
-                button_add_product_container,
-                button_required_container,
-                button_assign_driver_container,
-                button_empty,
-                button_empty_2],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER,
-               offset=(0, -0.25)),
-        ft.Row([button_driver_in_storage_container,
-                button_deliver_sell_container,
-                button_delivered_sell_container,
-                button_sign_docs_container,
-                button_end_sell_container,
-                button_update_sell,
-                button_push_sell],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER,
-               offset=(0, -0.25)),
-        ft.Row([txt_progress_bar_order_sell],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER,
-               offset=(0, -0.5)),
-        ft.Row([progress_bar_sell],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER,
-               offset=(0, -0.6)),
-        ft.Row([txt_go_sell, button_go_sell],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER),
-        ft.Row([txt_sell_str, button_copy_str_sell],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER),
+        row_sell_first,
+        row_sell_second,
+        row_txt_progress_bar_sell,
+        row_progress_bar_sell,
+        row_go_sell,
+        row_sell_str
     ])
 
     return content

@@ -11,7 +11,6 @@ from press_button.fake_do_something import do_something
 
 
 def tools_page(page):
-
     button_reset_password = ElevatedButtons().button_reset_password()
     txt_progress_reset_password = Texts().text_button_reset_password()
     button_delete_order = ElevatedButtons().button_delete_order()
@@ -51,12 +50,36 @@ def tools_page(page):
     button_delete_order.on_click = go_delete_order
     button_reset_password.on_click = go_default_password
 
+    row_options = ft.Row([button_delete_order, button_reset_password],
+                         alignment=ft.MainAxisAlignment.CENTER,
+                         vertical_alignment=ft.CrossAxisAlignment.CENTER,
+                         offset=(0, -0.17))
+
+    def resize():
+        width_page = int(page.width)
+        if width_page < 470:
+            width_button = (width_page - 30) / 2
+            if width_button <= 155:
+                width_button = 155
+            row_options.scroll = ft.ScrollMode.ADAPTIVE
+            button_delete_order.width = width_button
+            button_reset_password.width = width_button
+        else:
+            row_options.scroll = False
+            button_delete_order.width = 220
+            button_reset_password.width = 220
+
+    resize()
+
+    async def page_resize(e):
+        resize()
+        await page.update_async()
+
+    page.on_resize = page_resize
+
     content = ft.Column([
         container_choice_tool,
-        ft.Row([button_delete_order, button_reset_password],
-               alignment=ft.MainAxisAlignment.CENTER,
-               vertical_alignment=ft.CrossAxisAlignment.CENTER,
-               offset=(0, -0.17)),
+        row_options,
         ft.Row([txt_progress_reset_password],
                alignment=ft.MainAxisAlignment.CENTER,
                offset=(0, -0.9))
