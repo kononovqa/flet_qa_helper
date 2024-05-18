@@ -24,3 +24,15 @@ class Icons:
 
         self.icon_yt = ft.IconButton(icon=ft.icons.ONDEMAND_VIDEO,
                                      icon_color=ft.colors.WHITE)
+
+        self.icon_github = ft.Container(
+            content=ft.Image(src='github_logo.png', width=23, height=23), margin=9)
+
+        self.icon_email = ft.Container(
+            content=ft.Image(src='email_logo.png', width=23, height=23), margin=9)
+
+        self.icon_linkedin = ft.Container(
+            content=ft.Image(src='linkedin_logo.png', width=23, height=23), margin=9)
+
+        self.icon_inst = ft.Container(
+            content=ft.Image(src='inst_logo.png', width=23, height=23), margin=9)

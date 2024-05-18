@@ -45,7 +45,7 @@ class Texts:
 
         # info page
         self.container_app_version = ft.Text(
-            value='Версия приложения: 1.2.1 \n',
+            value='Версия приложения: 1.2.2 \n',
             font_family='Arial',
             size=20,
             color=ft.colors.WHITE)
@@ -64,6 +64,30 @@ class Texts:
 
         self.txt_yt = ft.Text(
             value='@KononovQA',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE)
+
+        self.txt_github = ft.Text(
+            value='@KononovQA',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE)
+
+        self.txt_email = ft.Text(
+            value='mk@kononovqa.ru',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE)
+
+        self.txt_linkedin = ft.Text(
+            value='михаил-к-2b4801233',
+            font_family='Arial',
+            size=20,
+            color=ft.colors.WHITE)
+
+        self.txt_inst = ft.Text(
+            value='@yoshikitzu',
             font_family='Arial',
             size=20,
             color=ft.colors.WHITE)

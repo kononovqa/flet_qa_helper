@@ -17,7 +17,7 @@ def custom_openapi():
         tags=TAGS_METADATA,
         servers=[{'url': '/api'}],
         contact={'name': 'Кононов Михаил. @KononovQA',
-                 'email': 'mkononovqa@mail.ru'}
+                 'email': 'mk@kononovqa.ru'}
     )
     return api.openapi_schema
 
@@ -30,7 +30,7 @@ api.openapi = custom_openapi
 async def custom_swagger_ui_html():
     return get_swagger_ui_html(
         openapi_url="/api/openapi.json",
-        title=f'Flet QA Helper - Swagger Ui',
+        title='Flet QA Helper - Swagger Ui',
         oauth2_redirect_url=api.swagger_ui_oauth2_redirect_url,
         swagger_js_url="/static/swagger-ui-bundle.js",
         swagger_css_url="/static/swagger-ui.css",
@@ -62,6 +62,13 @@ async def delete_user(user_login: str):
 def get_result_autotests(service_name: str, date: str, total_tests: int,
                          test_failed: int, autotests_build_id: int,
                          service_path: str = ''):
+    service_name = service_name[:20]
+    service_name = service_name.replace(' ', '_')
+    date = date[:13]
+    total_tests = 99999 if total_tests > 99999 else total_tests
+    test_failed = 99999 if test_failed > 99999 else total_tests
+    autotests_build_id = 99999 if autotests_build_id > 99999 else total_tests
+    service_path = service_path[:500]
     json_data = {'service_name': service_name,
                  'date': date,
                  'total_tests': total_tests,
