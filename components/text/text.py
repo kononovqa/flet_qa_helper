@@ -81,7 +81,7 @@ class Texts:
             color=ft.colors.WHITE)
 
         self.txt_linkedin = ft.Text(
-            value='михаил-к-2b4801233',
+            value='@KononovQA',
             font_family='Arial',
             size=20,
             color=ft.colors.WHITE)
