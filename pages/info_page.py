@@ -36,7 +36,7 @@ def info_page(page):
         await page.set_clipboard_async('mk@kononovqa.ru')
 
     async def press_linkedin(e):
-        await page.launch_url_async('https://linkedin.com/in/михаил-к-2b4801233')
+        await page.launch_url_async('https://linkedin.com/in/kononovqa')
 
     async def press_inst(e):
         await page.launch_url_async('https://instagram.com/yoshikitzu')
