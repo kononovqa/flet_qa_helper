@@ -66,8 +66,8 @@ def get_result_autotests(service_name: str, date: str, total_tests: int,
     service_name = service_name.replace(' ', '_')
     date = date[:13]
     total_tests = 99999 if total_tests > 99999 else total_tests
-    test_failed = 99999 if test_failed > 99999 else total_tests
-    autotests_build_id = 99999 if autotests_build_id > 99999 else total_tests
+    test_failed = 99999 if test_failed > 99999 else test_failed
+    autotests_build_id = 99999 if autotests_build_id > 99999 else autotests_build_id
     service_path = service_path[:500]
     json_data = {'service_name': service_name,
                  'date': date,
